@@ -1,0 +1,21 @@
+# ── Large archives ───────────────────────────────────────────────────
+images/*.zip
+
+# ── Screenshot / reference images (generated; not source assets) ──────
+images/Photos-3-001/
+images/linq_*.png
+images/localhost_*.png
+
+# ── OS noise ─────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Editor / IDE ──────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Netlify local cache ───────────────────────────────────────────────
+.netlify/

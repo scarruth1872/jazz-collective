@@ -1,0 +1,41 @@
+# Netlify Build Configuration
+# ─────────────────────────────────────────────────────────────────────
+# This is a static HTML/CSS/JS site — no build step required.
+# Netlify will publish the root of the repo directly.
+
+[build]
+  publish = "."        # serve the project root
+  command = ""         # no build command needed
+
+# ── Redirect: SPA-style fallback (useful if you add client-side routing)
+# [[redirects]]
+#   from   = "/*"
+#   to     = "/index.html"
+#   status = 200
+
+# ── Security headers ──────────────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "DENY"
+    X-XSS-Protection       = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    Permissions-Policy     = "camera=(), microphone=(), geolocation=()"
+
+# ── Cache images aggressively ─────────────────────────────────────────
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ── Cache CSS / JS with shorter TTL so updates propagate quickly ──────
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
