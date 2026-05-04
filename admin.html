@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jazz Collective CMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+<meta name="robots" content="noindex,nofollow">
+</head>
+<body>
+
+<!-- ── LOGIN ─────────────────────────────────────── -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">KH &amp; TJC</div>
+    <div class="login-sub">Content Management</div>
+    <form id="login-form">
+      <input type="password" id="pw-input" placeholder="Enter password" autocomplete="current-password">
+      <button type="submit">Sign In</button>
+    </form>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
+<!-- ── ADMIN APP ─────────────────────────────────── -->
+<div id="admin-app" class="hidden">
+
+  <header id="admin-header">
+    <div class="admin-logo">KH <span>CMS</span></div>
+    <div class="header-actions">
+      <span class="save-badge" id="save-badge">✓ All Saved</span>
+      <a href="index.html" target="_blank" class="btn-view">↗ View Site</a>
+      <button class="btn-publish" id="btn-publish">⬇ Export JSON</button>
+      <button class="btn-logout" id="btn-logout">Sign Out</button>
+    </div>
+  </header>
+
+  <div id="admin-layout">
+    <nav id="admin-sidebar">
+      <button class="tab-btn active" data-tab="general"><span class="tab-icon">🏠</span> General</button>
+      <button class="tab-btn" data-tab="hero"><span class="tab-icon">🎬</span> Hero</button>
+      <button class="tab-btn" data-tab="about"><span class="tab-icon">📖</span> About</button>
+      <button class="tab-btn" data-tab="gallery"><span class="tab-icon">🖼️</span> Gallery</button>
+      <button class="tab-btn" data-tab="events"><span class="tab-icon">📅</span> Events</button>
+      <button class="tab-btn" data-tab="blog"><span class="tab-icon">📰</span> Blog</button>
+      <button class="tab-btn" data-tab="contact"><span class="tab-icon">📬</span> Contact</button>
+      <button class="tab-btn" data-tab="theme"><span class="tab-icon">🎨</span> Theme</button>
+      <button class="tab-btn" data-tab="data"><span class="tab-icon">💾</span> Data</button>
+    </nav>
+
+    <main id="admin-content">
+
+      <!-- GENERAL -->
+      <div class="tab-panel active" id="tab-general">
+        <div class="panel-title">General Settings</div>
+        <div class="panel-sub">SITE TITLE · META · BOOKING URL</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Site Identity</div>
+          <div class="field-group"><label class="field-label">Site Title</label><input class="field-input" data-path="meta.title" type="text"></div>
+          <div class="field-group"><label class="field-label">Meta Description</label><textarea class="field-textarea" data-path="meta.description" rows="3"></textarea></div>
+          <div class="field-group"><label class="field-label">Global Booking URL (LinqApp)</label><input class="field-input" data-path="meta.bookingUrl" type="url"><div class="field-hint">Used as the default link for all booking buttons.</div></div>
+        </div>
+        <div class="cms-card">
+          <div class="cms-card-title">Footer</div>
+          <div class="field-row">
+            <div class="field-group"><label class="field-label">Thank You Text</label><input class="field-input" data-path="footer.thankYou" type="text"></div>
+            <div class="field-group"><label class="field-label">Sub Text</label><input class="field-input" data-path="footer.subtext" type="text"></div>
+          </div>
+          <div class="field-group"><label class="field-label">Credits Line</label><input class="field-input" data-path="footer.credits" type="text"></div>
+          <div class="field-row">
+            <div class="field-group"><label class="field-label">Booking Link Text</label><input class="field-input" data-path="footer.bookingLinkText" type="text"></div>
+            <div class="field-group"><label class="field-label">Booking URL</label><input class="field-input" data-path="footer.bookingUrl" type="url"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="tab-panel" id="tab-hero">
+        <div class="panel-title">Hero Section</div>
+        <div class="panel-sub">MAIN HEADLINE · TWO HERO IMAGES</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Headline</div>
+          <div class="field-row">
+            <div class="field-group"><label class="field-label">Title</label><input class="field-input" data-path="hero.title" type="text"></div>
+            <div class="field-group"><label class="field-label">Subtitle (gold text)</label><input class="field-input" data-path="hero.subtitle" type="text"></div>
+          </div>
+        </div>
+        <div class="cms-card">
+          <div class="cms-card-title">Hero Image 1</div>
+          <div class="img-picker" data-img-path="hero.image1.src">
+            <div class="img-preview"><img src="" alt="Hero 1"></div>
+            <div class="img-controls">
+              <input type="text" class="img-url-input" placeholder="Paste image URL…">
+              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" hidden class="img-file-input"></label>
+              <button class="img-apply-btn">Apply</button>
+            </div>
+          </div>
+        </div>
+        <div class="cms-card">
+          <div class="cms-card-title">Hero Image 2</div>
+          <div class="img-picker" data-img-path="hero.image2.src">
+            <div class="img-preview"><img src="" alt="Hero 2"></div>
+            <div class="img-controls">
+              <input type="text" class="img-url-input" placeholder="Paste image URL…">
+              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" hidden class="img-file-input"></label>
+              <button class="img-apply-btn">Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="tab-panel" id="tab-about">
+        <div class="panel-title">About Sections</div>
+        <div class="panel-sub">BIOGRAPHY · CHARACTERISTICS · GLOBAL · EDUCATION</div>
+        <!-- Intro -->
+        <div class="cms-card">
+          <div class="cms-card-title">Introduction to Jazz</div>
+          <div class="field-group"><label class="field-label">Heading (HTML allowed)</label><input class="field-input" data-path="about.intro.heading" type="text"></div>
+          <div class="field-group"><label class="field-label">Body</label><textarea class="field-textarea" data-path="about.intro.body" rows="4"></textarea></div>
+          <div class="cms-card-title" style="margin-top:1rem">Image</div>
+          <div class="img-picker" data-img-path="about.intro.image.src">
+            <div class="img-preview"><img src="" alt="Intro"></div>
+            <div class="img-controls"><input type="text" class="img-url-input" placeholder="Paste URL…"><label class="img-upload-label">📁 Upload<input type="file" accept="image/*" hidden class="img-file-input"></label><button class="img-apply-btn">Apply</button></div>
+          </div>
+        </div>
+        <!-- Characteristics -->
+        <div class="cms-card">
+          <div class="cms-card-title">Jazz Characteristics</div>
+          <div class="field-group"><label class="field-label">Heading</label><input class="field-input" data-path="about.characteristics.heading" type="text"></div>
+          <div class="field-group"><label class="field-label">Paragraph 1</label><textarea class="field-textarea" data-path="about.characteristics.body1" rows="3"></textarea></div>
+          <div class="field-group"><label class="field-label">Paragraph 2</label><textarea class="field-textarea" data-path="about.characteristics.body2" rows="3"></textarea></div>
+          <div class="field-row" style="margin-top:1rem">
+            <div>
+              <div class="cms-card-title">Main Image</div>
+              <div class="img-picker" data-img-path="about.characteristics.mainImage.src">
+                <div class="img-preview"><img src="" alt=""></div>
+                <div class="img-controls"><input type="text" class="img-url-input" placeholder="URL…"><label class="img-upload-label">📁<input type="file" accept="image/*" hidden class="img-file-input"></label><button class="img-apply-btn">Apply</button></div>
+              </div>
+            </div>
+            <div>
+              <div class="cms-card-title">Small Image</div>
+              <div class="img-picker" data-img-path="about.characteristics.smallImage.src">
+                <div class="img-preview"><img src="" alt=""></div>
+                <div class="img-controls"><input type="text" class="img-url-input" placeholder="URL…"><label class="img-upload-label">📁<input type="file" accept="image/*" hidden class="img-file-input"></label><button class="img-apply-btn">Apply</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Banner -->
+        <div class="cms-card">
+          <div class="cms-card-title">Full-Width Banner</div>
+          <div class="field-group"><label class="field-label">Banner Text (HTML allowed)</label><input class="field-input" data-path="about.banner.text" type="text"></div>
+          <div class="img-picker" data-img-path="about.banner.image.src">
+            <div class="img-preview"><img src="" alt="Banner"></div>
+            <div class="img-controls"><input type="text" class="img-url-input" placeholder="URL…"><label class="img-upload-label">📁<input type="file" accept="image/*" hidden class="img-file-input"></label><button class="img-apply-btn">Apply</button></div>
+          </div>
+        </div>
+        <!-- Modern -->
+        <div class="cms-card">
+          <div class="cms-card-title">Modern &amp; Fusion Jazz</div>
+          <div class="field-group"><label class="field-label">Heading</label><input class="field-input" data-path="about.modern.heading" type="text"></div>
+          <div class="field-row">
+            <div class="field-group"><label class="field-label">Paragraph 1</label><textarea class="field-textarea" data-path="about.modern.body1" rows="3"></textarea></div>
+            <div class="field-group"><label class="field-label">Paragraph 2</label><textarea class="field-textarea" data-path="about.modern.body2" rows="3"></textarea></div>
+          </div>
+          <div class="img-picker" data-img-path="about.modern.image.src" style="margin-top:.75rem">
+            <div class="img-preview"><img src="" alt=""></div>
+            <div class="img-controls"><input type="text" class="img-url-input" placeholder="URL…"><label class="img-upload-label">📁<input type="file" accept="image/*" hidden class="img-file-input"></label><button class="img-apply-btn">Apply</button></div>
+          </div>
+        </div>
+        <!-- World -->
+        <div class="cms-card">
+          <div class="cms-card-title">Jazz Around the World</div>
+          <div class="field-group"><label class="field-label">Heading</label><input class="field-input" data-path="about.world.heading" type="text"></div>
+          <div class="field-group"><label class="field-label">Body</label><textarea class="field-textarea" data-path="about.world.body" rows="3"></textarea></div>
+          <div class="img-picker" data-img-path="about.world.image.src" style="margin-top:.75rem">
+            <div class="img-preview"><img src="" alt=""></div>
+            <div class="img-controls"><input type="text" class="img-url-input" placeholder="URL…"><label class="img-upload-label">📁<input type="file" accept="image/*" hidden class="img-file-input"></label><button class="img-apply-btn">Apply</button></div>
+          </div>
+        </div>
+        <!-- Map -->
+        <div class="cms-card">
+          <div class="cms-card-title">Jazz Festivals Globally</div>
+          <div class="field-group"><label class="field-label">Heading</label><input class="field-input" data-path="about.map.heading" type="text"></div>
+          <div class="field-row">
+            <div class="field-group"><label class="field-label">Paragraph 1</label><textarea class="field-textarea" data-path="about.map.body1" rows="3"></textarea></div>
+            <div class="field-group"><label class="field-label">Paragraph 2</label><textarea class="field-textarea" data-path="about.map.body2" rows="3"></textarea></div>
+          </div>
+        </div>
+        <!-- Education -->
+        <div class="cms-card">
+          <div class="cms-card-title">Jazz Education &amp; Conservatories</div>
+          <div class="field-group"><label class="field-label">Heading</label><input class="field-input" data-path="about.education.heading" type="text"></div>
+          <div class="field-row">
+            <div class="field-group"><label class="field-label">Paragraph 1</label><textarea class="field-textarea" data-path="about.education.body1" rows="3"></textarea></div>
+            <div class="field-group"><label class="field-label">Paragraph 2</label><textarea class="field-textarea" data-path="about.education.body2" rows="3"></textarea></div>
+          </div>
+          <div class="field-row" style="margin-top:.75rem">
+            <div class="img-picker" data-img-path="about.education.image1.src">
+              <div class="img-preview"><img src="" alt=""></div>
+              <div class="img-controls"><input type="text" class="img-url-input" placeholder="URL…"><label class="img-upload-label">📁<input type="file" accept="image/*" hidden class="img-file-input"></label><button class="img-apply-btn">Apply</button></div>
+            </div>
+            <div class="img-picker" data-img-path="about.education.image2.src">
+              <div class="img-preview"><img src="" alt=""></div>
+              <div class="img-controls"><input type="text" class="img-url-input" placeholder="URL…"><label class="img-upload-label">📁<input type="file" accept="image/*" hidden class="img-file-input"></label><button class="img-apply-btn">Apply</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GALLERY -->
+      <div class="tab-panel" id="tab-gallery">
+        <div class="panel-title">Photo Gallery</div>
+        <div class="panel-sub">ADD · REMOVE · REORDER PHOTOS</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Gallery Items</div>
+          <div class="gallery-manage-grid" id="gallery-manager"></div>
+          <button class="btn-add" id="btn-add-gallery" style="margin-top:1rem">+ Add Photo</button>
+        </div>
+      </div>
+
+      <!-- EVENTS -->
+      <div class="tab-panel" id="tab-events">
+        <div class="panel-title">Upcoming Events</div>
+        <div class="panel-sub">ADD · EDIT · DELETE SHOWS</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Events Schedule</div>
+          <div id="events-manager"></div>
+          <button class="btn-add" id="btn-add-event">+ Add Event</button>
+        </div>
+      </div>
+
+      <!-- BLOG -->
+      <div class="tab-panel" id="tab-blog">
+        <div class="panel-title">Blog &amp; News</div>
+        <div class="panel-sub">ADD · EDIT · DELETE POSTS</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Blog Posts</div>
+          <div id="blog-manager"></div>
+          <button class="btn-add" id="btn-add-blog">+ Add Post</button>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="tab-panel" id="tab-contact">
+        <div class="panel-title">Contact &amp; Booking</div>
+        <div class="panel-sub">BOOKING COPY · LINQ URL · CONTACT PHOTO</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Section Text</div>
+          <div class="field-row">
+            <div class="field-group"><label class="field-label">Section Label</label><input class="field-input" data-path="contact.sectionLabel" type="text"></div>
+            <div class="field-group"><label class="field-label">Heading</label><input class="field-input" data-path="contact.heading" type="text"></div>
+          </div>
+          <div class="field-group"><label class="field-label">Subheading (gold)</label><input class="field-input" data-path="contact.subheading" type="text"></div>
+          <div class="field-group"><label class="field-label">Intro Paragraph</label><textarea class="field-textarea" data-path="contact.intro" rows="3"></textarea></div>
+          <div class="field-group"><label class="field-label">LinqApp Intro Text</label><textarea class="field-textarea" data-path="contact.linqIntro" rows="2"></textarea></div>
+          <div class="field-row">
+            <div class="field-group"><label class="field-label">LinqApp Button Text</label><input class="field-input" data-path="contact.linqText" type="text"></div>
+            <div class="field-group"><label class="field-label">LinqApp URL</label><input class="field-input" data-path="contact.linqUrl" type="url"></div>
+          </div>
+        </div>
+        <div class="cms-card">
+          <div class="cms-card-title">Contact Photo</div>
+          <div class="img-picker" data-img-path="contact.photo.src">
+            <div class="img-preview"><img src="" alt="Contact"></div>
+            <div class="img-controls"><input type="text" class="img-url-input" placeholder="Paste URL…"><label class="img-upload-label">📁 Upload<input type="file" accept="image/*" hidden class="img-file-input"></label><button class="img-apply-btn">Apply</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THEME -->
+      <div class="tab-panel" id="tab-theme">
+        <div class="panel-title">Theme &amp; Colors</div>
+        <div class="panel-sub">ACCENT COLOR · BACKGROUNDS · TEXT</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Color Palette</div>
+          <div class="color-row">
+            <div class="color-field"><label>Gold Accent</label><input type="color" data-path="theme.gold"></div>
+            <div class="color-field"><label>Gold (hover)</label><input type="color" data-path="theme.goldMuted"></div>
+            <div class="color-field"><label>Background</label><input type="color" data-path="theme.bg"></div>
+            <div class="color-field"><label>Surface</label><input type="color" data-path="theme.bg2"></div>
+            <div class="color-field"><label>Text Color</label><input type="color" data-path="theme.text"></div>
+            <div class="color-field"><label>Muted Text</label><input type="color" data-path="theme.textMuted"></div>
+          </div>
+          <div style="margin-top:1.25rem;display:flex;gap:.75rem">
+            <button class="btn-action" id="btn-apply-theme">Apply Theme to Site</button>
+            <button class="btn-action" id="btn-reset-theme">Reset to Gold Default</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATA -->
+      <div class="tab-panel" id="tab-data">
+        <div class="panel-title">Data Management</div>
+        <div class="panel-sub">EXPORT · IMPORT · RESET</div>
+        <div class="data-action-card">
+          <div class="data-icon">⬇️</div>
+          <div class="data-info">
+            <h3>Export Content JSON</h3>
+            <p>Download your current content as a <code>content-data.json</code> file. Commit this to GitHub to make changes permanent for all visitors.</p>
+            <button class="btn-action" id="btn-export">Download content-data.json</button>
+          </div>
+        </div>
+        <div class="data-action-card">
+          <div class="data-icon">⬆️</div>
+          <div class="data-info">
+            <h3>Import Content JSON</h3>
+            <p>Paste exported JSON below or upload a file to restore a previously saved state.</p>
+            <textarea class="import-area" id="import-textarea" placeholder='Paste JSON here…'></textarea>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+              <button class="btn-action" id="btn-import-paste">Import from Text</button>
+              <label class="btn-action" style="cursor:pointer">Upload JSON File<input type="file" accept=".json" hidden id="import-file"></label>
+            </div>
+          </div>
+        </div>
+        <div class="data-action-card">
+          <div class="data-icon">🔑</div>
+          <div class="data-info">
+            <h3>Change Admin Password</h3>
+            <div class="field-row" style="margin-bottom:.75rem">
+              <div class="field-group"><label class="field-label">New Password</label><input type="password" class="field-input" id="new-pw" placeholder="New password"></div>
+              <div class="field-group"><label class="field-label">Confirm</label><input type="password" class="field-input" id="confirm-pw" placeholder="Confirm"></div>
+            </div>
+            <button class="btn-action" id="btn-change-pw">Update Password</button>
+          </div>
+        </div>
+        <div class="data-action-card">
+          <div class="data-icon">⚠️</div>
+          <div class="data-info">
+            <h3>Reset to Defaults</h3>
+            <p>Wipe all localStorage changes and restore the original site content. <strong>This cannot be undone.</strong></p>
+            <button class="btn-action danger" id="btn-reset">Reset All Content</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="modal-overlay" class="hidden">
+  <div id="modal-box">
+    <div class="modal-header">
+      <span class="modal-title" id="modal-title">Edit</span>
+      <button class="modal-close" id="modal-close">×</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn-cancel" id="modal-cancel">Cancel</button>
+      <button class="btn-save-modal" id="modal-save">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast-container"></div>
+
+<script src="content.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

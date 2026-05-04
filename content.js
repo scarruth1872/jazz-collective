@@ -1,0 +1,143 @@
+/* ═══════════════════════════════════════════════════════════
+   JAZZ COLLECTIVE — SITE CONTENT DATA LAYER
+   Edit via /admin.html — changes saved to localStorage.
+   Export JSON from admin to make changes permanent on deploy.
+═══════════════════════════════════════════════════════════ */
+(function () {
+  var DEFAULTS = {
+    meta: {
+      title: "Krystal Harrow & The Jazz Collective",
+      description: "Krystal Harrow is an established vocalist and owner of Krystal Harrow Entertainment, offering premium musical experiences across Jazz, Gospel, R&B, and more.",
+      bookingUrl: "https://linqapp.com/ynqjcd89o1pi"
+    },
+    hero: {
+      title: "KRYSTAL HARROW",
+      subtitle: "& THE JAZZ COLLECTIVE",
+      image1: { src: "images/Photos-3-001/IMG_20260503_112550.jpg", alt: "Krystal Harrow performing live" },
+      image2: { src: "images/Photos-3-001/IMG_20260503_112550 (6).jpg", alt: "The Jazz Collective on stage" }
+    },
+    about: {
+      intro: {
+        heading: "Introduction <br>to Jazz",
+        body: "Krystal Harrow is an established vocalist originally from New York and currently based in North Carolina. With a rich musical background rooted in Caribbean flair and steel band percussions, she is a master at sight-reading and has consistently excelled in musical competitions.",
+        image: { src: "images/Photos-3-001/IMG_20260503_112549.jpg", alt: "Introduction to Jazz" }
+      },
+      characteristics: {
+        heading: "Jazz Characteristics",
+        body1: "Her repertoire spans multiple genres, making every performance a unique and vibrant experience. She effortlessly transitions between Jazz, Gospel, R&B, Hip-hop, and French African music.",
+        body2: "Whether delivering a soul-stirring jazz standard or bringing high energy to an R&B classic, Krystal's vocal characteristics are defined by her impeccable control, emotional depth, and versatile range.",
+        smallImage: { src: "images/Photos-3-001/IMG_20260503_112549 (1).png", alt: "Band Rehearsal" },
+        mainImage: { src: "images/Photos-3-001/IMG_20260503_112549 (4).png", alt: "Jazz Characteristics" }
+      },
+      banner: {
+        image: { src: "images/Photos-3-001/IMG_20260503_112550 (6).jpg", alt: "The Jazz Collective Live" },
+        text: "THE JAZZ<br>COLLECTIVE"
+      },
+      modern: {
+        heading: "Modern and<br>Fusion Jazz",
+        body1: "Krystal has toured with various artists as a background vocalist and has been featured in Gospel USA as part of an elite female vocalist group.",
+        body2: "Her recent performances include high-profile shows with her jazz band at the Mayor's Building in Winston-Salem, NC, blending modern arrangements with classic fusion elements.",
+        image: { src: "images/Photos-3-001/IMG_20260503_112549 (9).png", alt: "Modern Jazz Performance" }
+      },
+      world: {
+        heading: "Jazz Around<br>the World",
+        body: "Bringing her talents to stages across the nation, Krystal has performed at a wide array of events including stadium shows, holiday galas, weddings, and cultural soirées.",
+        image: { src: "images/Photos-3-001/IMG_20260503_112549 (10).png", alt: "Global Jazz Performance" }
+      },
+      map: {
+        heading: "Jazz festivals<br>globally",
+        body1: "Krystal Harrow Entertainment provides tailored musical experiences for events of any scale.",
+        body2: "From solo vocal performances with backing tracks to a full-sized dynamic band, services are fully customizable to meet the client's vision and elevate the atmosphere.",
+        image: { src: "images/world_map_gold_1777821050013.png", alt: "World Map" }
+      },
+      education: {
+        heading: "Jazz education &<br>conservatories",
+        body1: "Beyond live performances, Krystal is deeply passionate about music education and mentorship.",
+        body2: "She offers professional vocal coaching and empowerment through music, helping aspiring artists discover their voice and refine their craft in a supportive environment.",
+        image1: { src: "images/Photos-3-001/IMG_20260503_112549 (15).png", alt: "Education" },
+        image2: { src: "images/Photos-3-001/IMG_20260503_112549 (18).png", alt: "Performance" }
+      }
+    },
+    gallery: [
+      { src: "images/Photos-3-001/IMG_20260503_112549 (21).png", alt: "Krystal Harrow performing", caption: "Live Performance", span: "g-tall" },
+      { src: "images/Photos-3-001/IMG_20260503_112549 (22).png", alt: "The Jazz Collective", caption: "The Collective", span: "" },
+      { src: "images/Photos-3-001/IMG_20260503_112549 (24).png", alt: "Jazz rehearsal", caption: "Rehearsal", span: "" },
+      { src: "images/Photos-3-001/IMG_20260503_112550 (14).png", alt: "Stage lights", caption: "Stage Energy", span: "g-wide" },
+      { src: "images/Photos-3-001/IMG_20260503_112549 (25).png", alt: "Soulful performance", caption: "Soul & Sound", span: "" },
+      { src: "images/Photos-3-001/IMG_20260503_112549 (26).png", alt: "Jazz vibes", caption: "Jazz Vibes", span: "" },
+      { src: "images/Photos-3-001/IMG_20260503_112549 (27).png", alt: "Intimate performance", caption: "Intimate Set", span: "g-tall" },
+      { src: "images/Photos-3-001/IMG_20260503_112550 (3).png", alt: "Full band ensemble", caption: "Full Ensemble", span: "g-wide" },
+      { src: "images/Photos-3-001/IMG_20260503_112550 (12).png", alt: "Krystal Harrow close-up", caption: "The Voice", span: "" }
+    ],
+    events: [
+      { month: "JUN", day: "14", title: "Summer Jazz at the Plaza", venue: "Corpening Plaza Amphitheater", city: "Morganton, NC", ticketUrl: "https://linqapp.com/ynqjcd89o1pi" },
+      { month: "JUL", day: "4",  title: "Independence Day Gala", venue: "Benton Convention Center", city: "Winston-Salem, NC", ticketUrl: "https://linqapp.com/ynqjcd89o1pi" },
+      { month: "AUG", day: "23", title: "Fusion Nights — Late Session", venue: "The Green Bean", city: "Greensboro, NC", ticketUrl: "https://linqapp.com/ynqjcd89o1pi" },
+      { month: "SEP", day: "7",  title: "Caribbean Jazz Experience", venue: "Piedmont Hall", city: "Charlotte, NC", ticketUrl: "https://linqapp.com/ynqjcd89o1pi" },
+      { month: "OCT", day: "19", title: "Gospel & Jazz Brunch", venue: "Mayor's Building Terrace", city: "Winston-Salem, NC", ticketUrl: "https://linqapp.com/ynqjcd89o1pi" }
+    ],
+    blog: [
+      { date: "April 28, 2026", title: "The Magic of Caribbean Jazz Fusion", body: "How the steel pan rhythms of Trinidad shaped a distinctly Caribbean approach to jazz improvisation, and what it means to bring that sound to American stages.", image: { src: "images/Photos-3-001/IMG_20260503_112549 (19).png", alt: "Caribbean Jazz Fusion" }, tag: "Music" },
+      { date: "March 15, 2026", title: "Vocal Techniques Workshop Recap", body: "Over 40 aspiring vocalists joined Krystal for an intensive two-day vocal techniques and empowerment workshop — here are the key takeaways.", image: { src: "images/Photos-3-001/IMG_20260503_112549 (21).png", alt: "Vocal Techniques Workshop" }, tag: "Education" },
+      { date: "February 3, 2026", title: "Behind the Scenes at the Mayor's Building", body: "An exclusive look at the preparation, the sound check, and the electric atmosphere surrounding one of our most celebrated performances at Winston-Salem's Mayor's Building.", image: { src: "images/Photos-3-001/IMG_20260503_112550 (14).png", alt: "Mayor's Building Performance" }, tag: "Behind the Scenes" }
+    ],
+    contact: {
+      sectionLabel: "Get In Touch",
+      heading: "Book Krystal",
+      subheading: "for Your Event",
+      intro: "Ready to elevate your event with world-class jazz? Fill out the form and Krystal's team will respond within 48 hours.",
+      linqIntro: "For fast-track bookings and direct availability, use the LinqApp link below:",
+      linqUrl: "https://linqapp.com/ynqjcd89o1pi",
+      linqText: "Fast-Track Booking via LinqApp",
+      photo: { src: "images/Photos-3-001/IMG_20260503_112549 (27).png", alt: "Krystal Harrow" },
+      responseTime: "48 hours"
+    },
+    footer: {
+      thankYou: "THANK YOU",
+      subtext: "FOR YOUR ATTENTION",
+      credits: "Krystal Harrow & The Jazz Collective",
+      bookingUrl: "https://linqapp.com/ynqjcd89o1pi",
+      bookingLinkText: "linqapp.com/ynqjcd89o1pi",
+      bgImage: { src: "images/Photos-3-001/IMG_20260503_112549.jpg", alt: "" }
+    },
+    theme: {
+      gold: "#D4AF37",
+      goldMuted: "#b8972e",
+      bg: "#0d0d0d",
+      bg2: "#111111",
+      text: "#f0f0f0",
+      textMuted: "#aaaaaa"
+    }
+  };
+
+  function deepMerge(defaults, saved) {
+    if (!saved || typeof saved !== 'object') return defaults;
+    var result = Object.assign({}, defaults);
+    Object.keys(saved).forEach(function (k) {
+      if (Array.isArray(saved[k])) {
+        result[k] = saved[k];
+      } else if (saved[k] && typeof saved[k] === 'object' && !Array.isArray(defaults[k])) {
+        result[k] = deepMerge(defaults[k] || {}, saved[k]);
+      } else {
+        result[k] = saved[k];
+      }
+    });
+    return result;
+  }
+
+  function getContent() {
+    try {
+      var saved = localStorage.getItem('jc_content');
+      return saved ? deepMerge(DEFAULTS, JSON.parse(saved)) : DEFAULTS;
+    } catch (e) { return DEFAULTS; }
+  }
+
+  window.SITE_CONTENT  = getContent();
+  window.SITE_DEFAULTS = DEFAULTS;
+  window.CMS = {
+    get: getContent,
+    save: function (c) { localStorage.setItem('jc_content', JSON.stringify(c)); window.SITE_CONTENT = c; },
+    reset: function () { localStorage.removeItem('jc_content'); window.SITE_CONTENT = DEFAULTS; },
+    defaults: DEFAULTS
+  };
+}());
