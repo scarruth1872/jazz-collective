@@ -47,7 +47,10 @@
       <button class="tab-btn" data-tab="events"><span class="tab-icon">📅</span> Events</button>
       <button class="tab-btn" data-tab="blog"><span class="tab-icon">📰</span> Blog</button>
       <button class="tab-btn" data-tab="testimonials"><span class="tab-icon">💬</span> Reviews</button>
+      <button class="tab-btn" data-tab="press-kit"><span class="tab-icon">🎭</span> EPK</button>
       <button class="tab-btn" data-tab="marketing"><span class="tab-icon">📬</span> Marketing</button>
+      <button class="tab-btn" data-tab="seo"><span class="tab-icon">🔍</span> SEO</button>
+      <button class="tab-btn" data-tab="security"><span class="tab-icon">🔒</span> Security</button>
       <button class="tab-btn" data-tab="contact"><span class="tab-icon">📬</span> Contact</button>
       <button class="tab-btn" data-tab="theme"><span class="tab-icon">🎨</span> Theme</button>
       <button class="tab-btn" data-tab="data"><span class="tab-icon">💾</span> Data</button>
@@ -309,6 +312,63 @@
           <div class="cms-card-title">Blog Posts</div>
           <div id="blog-manager"></div>
           <button class="btn-add" id="btn-add-blog">+ Add Post</button>
+          <div class="field-hint" style="margin-top:1rem">Click "Edit" to manage full post content and images.</div>
+        </div>
+      </div>
+
+      <!-- PRESS KIT -->
+      <div class="tab-panel" id="tab-press-kit">
+        <div class="panel-title">Electronic Press Kit (EPK)</div>
+        <div class="panel-sub">ASSETS · BIO · MEDIA DOWNLOADS</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Biography</div>
+          <textarea class="field-textarea" data-path="pressKit.bio" rows="6"></textarea>
+        </div>
+        <div class="cms-card">
+          <div class="cms-card-title">EPK Assets (PDFs, Images, Riders)</div>
+          <div id="epk-manager"></div>
+          <button class="btn-add" id="btn-add-epk">+ Add Asset</button>
+        </div>
+      </div>
+
+      <!-- SEO -->
+      <div class="tab-panel" id="tab-seo">
+        <div class="panel-title">Search & Social SEO</div>
+        <div class="panel-sub">META TAGS · OPEN GRAPH · SOCIAL PREVIEWS</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Social Sharing Preview (Open Graph)</div>
+          <div class="field-group"><label class="field-label">Share Title</label><input class="field-input" data-path="seo.ogTitle" type="text"></div>
+          <div class="field-group" style="margin-top:.75rem"><label class="field-label">Share Description</label><textarea class="field-textarea" data-path="seo.ogDescription" rows="3"></textarea></div>
+          <div class="field-group" style="margin-top:.75rem">
+            <label class="field-label">Share Image (1200x630 recommended)</label>
+            <div class="img-picker" data-img-path="seo.ogImage">
+              <div class="img-preview"><img src="" alt="OG Image"></div>
+              <div class="img-controls">
+                <input type="text" class="img-url-input" placeholder="Paste image URL…">
+                <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" hidden class="img-file-input"></label>
+                <button class="img-apply-btn">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECURITY -->
+      <div class="tab-panel" id="tab-security">
+        <div class="panel-title">Security & Protection</div>
+        <div class="panel-sub">PRESS KIT PASSWORD · ACCESS CONTROL</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Press Kit Protection</div>
+          <div class="field-group">
+            <label class="field-label" style="display:flex;align-items:center;gap:.5rem">
+              <input type="checkbox" data-path="pressKit.protected"> Protect Press Kit with Password
+            </label>
+          </div>
+          <div class="field-group" style="margin-top:1rem">
+            <label class="field-label">Password</label>
+            <input class="field-input" data-path="pressKit.password" type="text" placeholder="e.g. jazz2024">
+            <div class="field-hint">Visitors must enter this to see the #/press-kit content.</div>
+          </div>
         </div>
       </div>
 

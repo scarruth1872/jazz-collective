@@ -32,6 +32,10 @@
     var el = document.getElementById(id);
     if (el && val) el.href = val;
   }
+  function setAttr(id, attr, val) {
+    var el = document.getElementById(id);
+    if (el && val) el.setAttribute(attr, val);
+  }
   /* Apply src + optional display settings from an image object */
   function applyImg(id, imgObj) {
     if (!imgObj) return;
@@ -51,6 +55,13 @@
     document.title = C.meta.title || document.title;
     var md = document.getElementById('cms-meta-desc');
     if (md) md.content = C.meta.description || md.content;
+    
+    // SEO Tags
+    if (C.seo) {
+      if (C.seo.ogTitle)       setAttr('og-title', 'content', C.seo.ogTitle);
+      if (C.seo.ogDescription) setAttr('og-desc', 'content', C.seo.ogDescription);
+      if (C.seo.ogImage)       setAttr('og-img', 'content', C.seo.ogImage);
+    }
 
     // Custom CSS
     var customCss = document.getElementById('cms-custom-css');
@@ -207,6 +218,40 @@
     }
   }
 
+  // Blog rendering update (Sprint 5)
+  if (C.blog) {
+    var blogGrid = document.getElementById('cms-blog-grid');
+    if (blogGrid) {
+      blogGrid.innerHTML = C.blog.map(function(post, i) {
+        return '<article class="blog-card fade-in" data-post-idx="' + i + '">' +
+                 '<div class="blog-card-image"><img src="' + post.image.src + '" alt="' + post.image.alt + '"></div>' +
+                 '<div class="blog-card-content">' +
+                   '<div class="blog-meta"><span class="blog-date">' + post.date + '</span> • <span class="blog-tag">' + post.tag + '</span></div>' +
+                   '<h3>' + post.title + '</h3>' +
+                   '<p>' + post.body + '</p>' +
+                   '<button class="blog-read-more">Read More <span>→</span></button>' +
+                 '</div>' +
+               '</article>';
+      }).join('');
+      
+      // Wire up clicks
+      blogGrid.querySelectorAll('.blog-card').forEach(function(card) {
+        card.onclick = function() { openBlogPost(parseInt(card.dataset.postIdx)); };
+      });
+    }
+  }
+
+  // Press Kit rendering
+  if (C.pressKit) {
+    setText('cms-epk-bio', C.pressKit.bio);
+    var assetList = document.getElementById('cms-epk-assets');
+    if (assetList) {
+      assetList.innerHTML = (C.pressKit.assets || []).map(function(a) {
+        return '<li>' + a.label + ' <a href="' + a.url + '" target="_blank" class="gold-text">Download</a></li>';
+      }).join('');
+    }
+  }
+
   // Events — re-render from data
   if (C.events && C.events.length) {
     var el = document.getElementById('cms-events-list');
@@ -308,6 +353,80 @@
     if (C.theme.text)      r.setProperty('--text-color', C.theme.text);
     if (C.theme.textMuted) r.setProperty('--text-muted', C.theme.textMuted);
   }
+    updateNav();
+  });
+
+  /* ── Sprint 5: Routing & Modals ──────────────── */
+  function handleHash() {
+    var hash = window.location.hash;
+    if (hash === '#/press-kit') openEPK();
+    else closeAllOverlays();
+  }
+  window.addEventListener('hashchange', handleHash);
+  handleHash();
+
+  function openEPK() {
+    var overlay = document.getElementById('press-kit-overlay');
+    if (!overlay) return;
+    overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    var isProtected = window.SITE_CONTENT.pressKit && window.SITE_CONTENT.pressKit.protected;
+    if (!isProtected || window._epkUnlocked) {
+      showEPKContent();
+    } else {
+      showEPKLock();
+    }
+  }
+
+  function showEPKLock() {
+    document.getElementById('epk-lock').classList.remove('hidden');
+    document.getElementById('epk-content').classList.add('hidden');
+  }
+
+  function showEPKContent() {
+    document.getElementById('epk-lock').classList.add('hidden');
+    document.getElementById('epk-content').classList.remove('hidden');
+  }
+
+  document.getElementById('epk-unlock-btn').onclick = function() {
+    var pass = document.getElementById('epk-pass').value;
+    if (pass === window.SITE_CONTENT.pressKit.password) {
+      window._epkUnlocked = true;
+      showEPKContent();
+    } else {
+      alert('Incorrect password');
+    }
+  };
+
+  function openBlogPost(idx) {
+    var post = window.SITE_CONTENT.blog[idx];
+    if (!post) return;
+    document.getElementById('cms-full-blog-date').textContent = post.date;
+    document.getElementById('cms-full-blog-title').textContent = post.title;
+    document.getElementById('cms-full-blog-img').src = post.image.src;
+    document.getElementById('cms-full-blog-content').innerHTML = post.content || post.body;
+    
+    document.getElementById('blog-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeAllOverlays() {
+    document.querySelectorAll('.sub-page-overlay').forEach(function(o) { o.classList.add('hidden'); });
+    document.body.style.overflow = '';
+    if (window.location.hash.startsWith('#/')) {
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+  }
+
+  document.getElementById('close-epk').onclick = closeAllOverlays;
+  document.getElementById('close-blog').onclick = closeAllOverlays;
+  
+  // Close on backdrop click
+  document.querySelectorAll('.sub-page-overlay').forEach(function(o) {
+    o.onclick = function(e) { if (e.target === o) closeAllOverlays(); };
+  });
+
 }());
 
 /* ─── Main Site JS ──────────────────────────────────────────── */

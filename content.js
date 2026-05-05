@@ -143,6 +143,22 @@
       bg2: "#111111",
       text: "#f0f0f0",
       textMuted: "#aaaaaa"
+    },
+    // --- Sprint 5: Advanced ---
+    pressKit: {
+      protected: true,
+      password: "jazz",
+      bio: "Krystal Harrow is an established vocalist originally from New York...",
+      assets: [
+        { label: "High-Res Headshot", url: "images/Photos-3-001/IMG_20260503_112549.jpg" },
+        { label: "Stage Plot (PDF)", url: "#" },
+        { label: "Technical Rider", url: "#" }
+      ]
+    },
+    seo: {
+      ogTitle: "Krystal Harrow | Premium Jazz Entertainment",
+      ogDescription: "Official portfolio of Krystal Harrow & The Jazz Collective.",
+      ogImage: "images/Photos-3-001/IMG_20260503_112550.jpg"
     }
   };
 

@@ -129,6 +129,7 @@
     renderEvents();
     renderBlog();
     renderTestimonials();
+    renderEPKAssets();
     // Theme
     wireTheme();
     // Data tab
@@ -566,19 +567,21 @@
       '<div class="field-group"><label class="field-label">Tag</label><input class="field-input" id="bl-tag" type="text" value="'+escHtml(p.tag||'')+'"></div>'+
     '</div>'+
     '<div class="field-group" style="margin-top:.75rem"><label class="field-label">Title</label><input class="field-input" id="bl-title" type="text" value="'+escHtml(p.title||'')+'"></div>'+
-    '<div class="field-group" style="margin-top:.75rem"><label class="field-label">Body</label><textarea class="field-textarea" id="bl-body" rows="4">'+escHtml(p.body||'')+'</textarea></div>'+
+    '<div class="field-group" style="margin-top:.75rem"><label class="field-label">Summary (Card Text)</label><textarea class="field-textarea" id="bl-body" rows="3">'+escHtml(p.body||'')+'</textarea></div>'+
+    '<div class="field-group" style="margin-top:.75rem"><label class="field-label">Full Post Content (HTML supported)</label><textarea class="field-textarea" id="bl-content" rows="6" placeholder="Paste full article content here...">'+escHtml(p.content||'')+'</textarea></div>'+
     '<div class="field-group" style="margin-top:.75rem"><label class="field-label">Image URL</label><input class="field-input" id="bl-img" type="text" value="'+escHtml((p.image&&p.image.src)||'')+'"></div>'+
     '<label class="img-upload-label" style="margin-top:.5rem;display:inline-flex">📁 Upload<input type="file" accept="image/*" hidden id="bl-file"></label>';
   }
 
   function openBlogModal(idx) {
     var isNew = idx < 0;
-    var p = isNew ? { image:{} } : JSON.parse(JSON.stringify(content.blog[idx]));
+    var p = isNew ? { image:{}, content:'' } : JSON.parse(JSON.stringify(content.blog[idx]));
     openModal(isNew ? 'Add Blog Post' : 'Edit Blog Post', blogForm(p), function(){
-      p.date  = ($('bl-date').value||'').trim();
-      p.tag   = ($('bl-tag').value||'').trim();
-      p.title = ($('bl-title').value||'').trim();
-      p.body  = ($('bl-body').value||'').trim();
+      p.date    = ($('bl-date').value||'').trim();
+      p.tag     = ($('bl-tag').value||'').trim();
+      p.title   = ($('bl-title').value||'').trim();
+      p.body    = ($('bl-body').value||'').trim();
+      p.content = ($('bl-content').value||'').trim();
       if (!p.image) p.image = {};
       p.image.src = ($('bl-img').value||'').trim();
       p.image.alt = p.title;
@@ -593,6 +596,62 @@
         var r = new FileReader();
         r.onload = function(ev){ if(imgInput) imgInput.value = ev.target.result; };
         r.readAsDataURL(fileInput.files[0]);
+      });
+    }, 50);
+  }
+
+  /* ── EPK Asset Manager ─────────────────────────── */
+  function renderEPKAssets() {
+    var container = $('epk-manager');
+    if (!container) return;
+    container.innerHTML = '';
+    (content.pressKit.assets || []).forEach(function(item, i){
+      var div = document.createElement('div');
+      div.className = 'list-item';
+      div.innerHTML =
+        '<div class="list-item-info">'+
+          '<div class="list-item-title">'+escHtml(item.label)+'</div>'+
+          '<div class="list-item-meta">'+escHtml(item.url)+'</div>'+
+        '</div>'+
+        '<div class="list-actions">'+
+          '<button class="btn-edit" data-ei="'+i+'">Edit</button>'+
+          '<button class="btn-delete" data-ex="'+i+'">Delete</button>'+
+        '</div>';
+      container.appendChild(div);
+    });
+
+    container.addEventListener('click', function(e){
+      var t = e.target;
+      if (t.dataset.ei !== undefined) openEPKAssetModal(+t.dataset.ei);
+      if (t.dataset.ex !== undefined) { if(confirm('Delete this asset?')) { content.pressKit.assets.splice(+t.dataset.ex,1); save(); renderEPKAssets(); } }
+    });
+    $('btn-add-epk').onclick = function(){ openEPKAssetModal(-1); };
+  }
+
+  function openEPKAssetModal(idx) {
+    var isNew = idx < 0;
+    var item = isNew ? { label:'', url:'' } : Object.assign({}, content.pressKit.assets[idx]);
+    openModal(isNew ? 'Add EPK Asset' : 'Edit EPK Asset',
+      '<div class="field-group"><label class="field-label">Label (e.g. Stage Plot PDF)</label><input class="field-input" id="ei-label" type="text" value="'+escHtml(item.label)+'"></div>'+
+      '<div class="field-group" style="margin-top:.75rem"><label class="field-label">File URL or Path</label><input class="field-input" id="ei-url" type="text" value="'+escHtml(item.url)+'"></div>'+
+      '<label class="img-upload-label" style="margin-top:.5rem;display:inline-flex">📁 Upload File<input type="file" hidden id="ei-file"></label>',
+      function(){
+        item.label = $('ei-label').value.trim();
+        item.url   = $('ei-url').value.trim();
+        if (!item.label || !item.url) { toast('Label and URL required','error'); return false; }
+        if (isNew) content.pressKit.assets.push(item);
+        else content.pressKit.assets[idx] = item;
+        save(); renderEPKAssets(); return true;
+      }
+    );
+    setTimeout(function(){
+      var fileInput = $('ei-file');
+      if (fileInput) fileInput.addEventListener('change', function(){
+        var file = fileInput.files[0];
+        if (!file) return;
+        var r = new FileReader();
+        r.onload = function(ev){ $('ei-url').value = ev.target.result; };
+        r.readAsDataURL(file);
       });
     }, 50);
   }

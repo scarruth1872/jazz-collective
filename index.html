@@ -10,6 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style id="cms-custom-css"></style>
+    <!-- Dynamic SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" id="og-title" content="Krystal Harrow">
+    <meta property="og:description" id="og-desc" content="Premium Jazz Entertainment">
+    <meta property="og:image" id="og-img" content="">
     <!-- Google Analytics placeholder -->
     <script id="cms-ga"></script>
 </head>
@@ -433,6 +438,63 @@
             <img src="images/Photos-3-001/IMG_20260503_112549.jpg" alt="">
         </div>
     </footer>
+
+    <!-- ═══════════════════════════════════════════
+         OVERLAYS & MODALS (Sprint 5)
+    ═══════════════════════════════════════════ -->
+
+    <!-- Press Kit / Protected EPK -->
+    <div id="press-kit-overlay" class="sub-page-overlay hidden">
+        <div class="overlay-content">
+            <button class="close-overlay" id="close-epk">×</button>
+            <div id="epk-lock" class="epk-lock-screen">
+                <span class="lock-icon">🔒</span>
+                <h2>Protected Press Kit</h2>
+                <p>Please enter the password to view assets and bio.</p>
+                <div class="lock-form">
+                    <input type="password" id="epk-pass" placeholder="Password...">
+                    <button id="epk-unlock-btn">Unlock</button>
+                </div>
+            </div>
+            <div id="epk-content" class="epk-main-content hidden">
+                <div class="section-header">
+                    <span class="section-label">ELECTRONIC PRESS KIT</span>
+                    <h2>Press Kit</h2>
+                    <div class="gold-line"></div>
+                </div>
+                <div class="epk-grid">
+                    <div class="epk-bio">
+                        <h3>Biography</h3>
+                        <p id="cms-epk-bio"></p>
+                    </div>
+                    <div class="epk-assets">
+                        <h3>Assets & Downloads</h3>
+                        <ul id="cms-epk-assets" class="asset-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Full Post Modal -->
+    <div id="blog-modal" class="sub-page-overlay hidden">
+        <div class="overlay-content blog-modal-content">
+            <button class="close-overlay" id="close-blog">×</button>
+            <div class="blog-full-post">
+                <div class="blog-post-header">
+                    <span class="blog-post-date" id="cms-full-blog-date"></span>
+                    <h2 id="cms-full-blog-title"></h2>
+                    <div class="gold-line"></div>
+                </div>
+                <div class="blog-post-hero">
+                    <img id="cms-full-blog-img" src="" alt="">
+                </div>
+                <div class="blog-post-content" id="cms-full-blog-content">
+                    <!-- Full content injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="content.js"></script>
     <script src="script.js"></script>
