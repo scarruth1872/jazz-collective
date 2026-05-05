@@ -8,13 +8,39 @@
     meta: {
       title: "Krystal Harrow & The Jazz Collective",
       description: "Krystal Harrow is an established vocalist and owner of Krystal Harrow Entertainment, offering premium musical experiences across Jazz, Gospel, R&B, and more.",
-      bookingUrl: "https://linqapp.com/ynqjcd89o1pi"
+      bookingUrl: "https://linqapp.com/ynqjcd89o1pi",
+      contactEmail: "kharrow@example.com",
+      googleAnalyticsId: "",
+      customCss: ""
     },
+    socials: {
+      instagram: "https://instagram.com",
+      facebook: "https://facebook.com",
+      youtube: "https://youtube.com",
+      twitter: ""
+    },
+    sections: {
+      about: { visible: true },
+      gallery: { visible: true },
+      events: { visible: true },
+      blog: { visible: true },
+      contact: { visible: true }
+    },
+    navigation: [
+      { label: "Home",    url: "#home",    section: "home" },
+      { label: "About",   url: "#about",   section: "about" },
+      { label: "Gallery", url: "#gallery", section: "gallery" },
+      { label: "Events",  url: "#events",  section: "events" },
+      { label: "Blog",    url: "#blog",    section: "blog" },
+      { label: "Book Now",url: "#contact", section: "contact", isCta: true }
+    ],
     hero: {
       title: "KRYSTAL HARROW",
       subtitle: "& THE JAZZ COLLECTIVE",
-      image1: { src: "images/Photos-3-001/IMG_20260503_112550.jpg", alt: "Krystal Harrow performing live" },
-      image2: { src: "images/Photos-3-001/IMG_20260503_112550 (6).jpg", alt: "The Jazz Collective on stage" }
+      images: [
+        { src: "images/Photos-3-001/IMG_20260503_112550.jpg", alt: "Krystal Harrow performing live" },
+        { src: "images/Photos-3-001/IMG_20260503_112550 (6).jpg", alt: "The Jazz Collective on stage" }
+      ]
     },
     about: {
       intro: {
@@ -99,6 +125,16 @@
       bookingUrl: "https://linqapp.com/ynqjcd89o1pi",
       bookingLinkText: "linqapp.com/ynqjcd89o1pi",
       bgImage: { src: "images/Photos-3-001/IMG_20260503_112549.jpg", alt: "" }
+    },
+    testimonials: [
+      { name: "Alicia Keys (Fan)", quote: "An incredible voice that captures the soul of jazz with every note.", stars: 5 },
+      { name: "Winston-Salem Mayor", quote: "A highlight of our cultural events, Krystal brings a level of professionalism and talent that is unmatched.", stars: 5 }
+    ],
+    newsletter: {
+      heading: "Stay Tuned",
+      body: "Join our mailing list for tour dates, workshop announcements, and exclusive jazz stories.",
+      buttonText: "Subscribe",
+      embedCode: ""
     },
     theme: {
       gold: "#D4AF37",

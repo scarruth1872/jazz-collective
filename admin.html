@@ -40,10 +40,14 @@
     <nav id="admin-sidebar">
       <button class="tab-btn active" data-tab="general"><span class="tab-icon">🏠</span> General</button>
       <button class="tab-btn" data-tab="hero"><span class="tab-icon">🎬</span> Hero</button>
+      <button class="tab-btn" data-tab="navigation"><span class="tab-icon">🗺️</span> Menu</button>
       <button class="tab-btn" data-tab="about"><span class="tab-icon">📖</span> About</button>
+      <button class="tab-btn" data-tab="sections"><span class="tab-icon">👁️</span> Sections</button>
       <button class="tab-btn" data-tab="gallery"><span class="tab-icon">🖼️</span> Gallery</button>
       <button class="tab-btn" data-tab="events"><span class="tab-icon">📅</span> Events</button>
       <button class="tab-btn" data-tab="blog"><span class="tab-icon">📰</span> Blog</button>
+      <button class="tab-btn" data-tab="testimonials"><span class="tab-icon">💬</span> Reviews</button>
+      <button class="tab-btn" data-tab="marketing"><span class="tab-icon">📬</span> Marketing</button>
       <button class="tab-btn" data-tab="contact"><span class="tab-icon">📬</span> Contact</button>
       <button class="tab-btn" data-tab="theme"><span class="tab-icon">🎨</span> Theme</button>
       <button class="tab-btn" data-tab="data"><span class="tab-icon">💾</span> Data</button>
@@ -59,7 +63,22 @@
           <div class="cms-card-title">Site Identity</div>
           <div class="field-group"><label class="field-label">Site Title</label><input class="field-input" data-path="meta.title" type="text"></div>
           <div class="field-group"><label class="field-label">Meta Description</label><textarea class="field-textarea" data-path="meta.description" rows="3"></textarea></div>
-          <div class="field-group"><label class="field-label">Global Booking URL (LinqApp)</label><input class="field-input" data-path="meta.bookingUrl" type="url"><div class="field-hint">Used as the default link for all booking buttons.</div></div>
+          <div class="field-row">
+            <div class="field-group"><label class="field-label">Global Booking URL (LinqApp)</label><input class="field-input" data-path="meta.bookingUrl" type="url"></div>
+            <div class="field-group"><label class="field-label">Contact Form Email</label><input class="field-input" data-path="meta.contactEmail" type="email"></div>
+          </div>
+          <div class="field-group"><label class="field-label">Google Analytics Measurement ID</label><input class="field-input" data-path="meta.googleAnalyticsId" type="text" placeholder="G-XXXXXXXXXX"></div>
+        </div>
+        <div class="cms-card">
+          <div class="cms-card-title">Social Media Links</div>
+          <div class="field-row">
+            <div class="field-group"><label class="field-label">Instagram URL</label><input class="field-input" data-path="socials.instagram" type="url"></div>
+            <div class="field-group"><label class="field-label">Facebook URL</label><input class="field-input" data-path="socials.facebook" type="url"></div>
+          </div>
+          <div class="field-row">
+            <div class="field-group"><label class="field-label">YouTube URL</label><input class="field-input" data-path="socials.youtube" type="url"></div>
+            <div class="field-group"><label class="field-label">Twitter/X URL</label><input class="field-input" data-path="socials.twitter" type="url"></div>
+          </div>
         </div>
         <div class="cms-card">
           <div class="cms-card-title">Footer</div>
@@ -75,10 +94,9 @@
         </div>
       </div>
 
-      <!-- HERO -->
       <div class="tab-panel" id="tab-hero">
-        <div class="panel-title">Hero Section</div>
-        <div class="panel-sub">MAIN HEADLINE · TWO HERO IMAGES</div>
+        <div class="panel-title">Hero Slideshow</div>
+        <div class="panel-sub">HEADLINE · BACKGROUND SLIDESHOW IMAGES</div>
         <div class="cms-card">
           <div class="cms-card-title">Headline</div>
           <div class="field-row">
@@ -87,26 +105,20 @@
           </div>
         </div>
         <div class="cms-card">
-          <div class="cms-card-title">Hero Image 1</div>
-          <div class="img-picker" data-img-path="hero.image1.src">
-            <div class="img-preview"><img src="" alt="Hero 1"></div>
-            <div class="img-controls">
-              <input type="text" class="img-url-input" placeholder="Paste image URL…">
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" hidden class="img-file-input"></label>
-              <button class="img-apply-btn">Apply</button>
-            </div>
-          </div>
+          <div class="cms-card-title">Slideshow Images</div>
+          <div class="gallery-manage-grid" id="hero-manager"></div>
+          <button class="btn-add" id="btn-add-hero" style="margin-top:1rem">+ Add Slide</button>
         </div>
+      </div>
+
+      <!-- NAVIGATION -->
+      <div class="tab-panel" id="tab-navigation">
+        <div class="panel-title">Navigation Menu</div>
+        <div class="panel-sub">MANAGE TOP NAV & FOOTER LINKS</div>
         <div class="cms-card">
-          <div class="cms-card-title">Hero Image 2</div>
-          <div class="img-picker" data-img-path="hero.image2.src">
-            <div class="img-preview"><img src="" alt="Hero 2"></div>
-            <div class="img-controls">
-              <input type="text" class="img-url-input" placeholder="Paste image URL…">
-              <label class="img-upload-label">📁 Upload<input type="file" accept="image/*" hidden class="img-file-input"></label>
-              <button class="img-apply-btn">Apply</button>
-            </div>
-          </div>
+          <div class="cms-card-title">Menu Items</div>
+          <div id="nav-manager"></div>
+          <button class="btn-add" id="btn-add-nav">+ Add Menu Link</button>
         </div>
       </div>
 
@@ -210,6 +222,63 @@
         </div>
       </div>
 
+      <!-- SECTIONS -->
+      <div class="tab-panel" id="tab-sections">
+        <div class="panel-title">Section Visibility</div>
+        <div class="panel-sub">SHOW OR HIDE ENTIRE PAGE SECTIONS</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Active Sections</div>
+          <div class="switch-group">
+            <div class="switch-label-wrap"><div class="switch-name">About Section</div><div class="switch-desc">Biography, Characteristics, Global, Education</div></div>
+            <label class="switch"><input type="checkbox" data-path="sections.about.visible"><span class="slider"></span></label>
+          </div>
+          <div class="switch-group">
+            <div class="switch-label-wrap"><div class="switch-name">Gallery Section</div><div class="switch-desc">Grid of performance photos</div></div>
+            <label class="switch"><input type="checkbox" data-path="sections.gallery.visible"><span class="slider"></span></label>
+          </div>
+          <div class="switch-group">
+            <div class="switch-label-wrap"><div class="switch-name">Events Section</div><div class="switch-desc">Upcoming shows and ticket links</div></div>
+            <label class="switch"><input type="checkbox" data-path="sections.events.visible"><span class="slider"></span></label>
+          </div>
+          <div class="switch-group">
+            <div class="switch-label-wrap"><div class="switch-name">Blog Section</div><div class="switch-desc">News updates and articles</div></div>
+            <label class="switch"><input type="checkbox" data-path="sections.blog.visible"><span class="slider"></span></label>
+          </div>
+          <div class="switch-group">
+            <div class="switch-label-wrap"><div class="switch-name">Contact Section</div><div class="switch-desc">Booking form and LinqApp link</div></div>
+            <label class="switch"><input type="checkbox" data-path="sections.contact.visible"><span class="slider"></span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- TESTIMONIALS -->
+      <div class="tab-panel" id="tab-testimonials">
+        <div class="panel-title">Client Reviews</div>
+        <div class="panel-sub">MANAGE TESTIMONIALS & RATINGS</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Testimonials</div>
+          <div id="testimonials-manager"></div>
+          <button class="btn-add" id="btn-add-testimonial">+ Add Review</button>
+        </div>
+      </div>
+
+      <!-- MARKETING -->
+      <div class="tab-panel" id="tab-marketing">
+        <div class="panel-title">Marketing & Growth</div>
+        <div class="panel-sub">NEWSLETTER · EMAIL CAPTURE</div>
+        <div class="cms-card">
+          <div class="cms-card-title">Newsletter Signup</div>
+          <div class="field-group"><label class="field-label">Heading</label><input class="field-input" data-path="newsletter.heading" type="text"></div>
+          <div class="field-group"><label class="field-label">Body Text</label><textarea class="field-textarea" data-path="newsletter.body" rows="3"></textarea></div>
+          <div class="field-group"><label class="field-label">Button Text</label><input class="field-input" data-path="newsletter.buttonText" type="text"></div>
+          <div class="field-group">
+            <label class="field-label">Mailchimp / Embed Code (Optional)</label>
+            <textarea class="code-editor" data-path="newsletter.embedCode" rows="5" placeholder="Paste <form> or <script> from your provider..."></textarea>
+            <div class="field-hint">If provided, this will override the default form.</div>
+          </div>
+        </div>
+      </div>
+
       <!-- GALLERY -->
       <div class="tab-panel" id="tab-gallery">
         <div class="panel-title">Photo Gallery</div>
@@ -289,6 +358,14 @@
             <button class="btn-action" id="btn-reset-theme">Reset to Gold Default</button>
           </div>
         </div>
+        <div class="cms-card">
+          <div class="cms-card-title">Custom CSS</div>
+          <div class="field-group">
+            <label class="field-label">Override Styles</label>
+            <textarea class="code-editor" data-path="meta.customCss" placeholder="/* Add custom CSS here */\nbody {\n  /* example */\n}"></textarea>
+            <div class="field-hint">Changes are applied immediately via injection. Use !important if needed.</div>
+          </div>
+        </div>
       </div>
 
       <!-- DATA -->
@@ -301,6 +378,19 @@
             <h3>Export Content JSON</h3>
             <p>Download your current content as a <code>content-data.json</code> file. Commit this to GitHub to make changes permanent for all visitors.</p>
             <button class="btn-action" id="btn-export">Download content-data.json</button>
+          </div>
+        </div>
+        <div class="data-action-card">
+          <div class="data-icon">🚀</div>
+          <div class="data-info">
+            <h3>Publish Changes</h3>
+            <p>To make your changes live for everyone:</p>
+            <ol style="font-size:0.8rem;color:var(--a-muted);margin-left:1.2rem;margin-bottom:0.75rem">
+              <li>Click <strong>Download content-data.json</strong> above.</li>
+              <li>Replace the existing <code>content-data.json</code> in your GitHub repository.</li>
+              <li>Netlify or Vercel will automatically detect the change and redeploy your site.</li>
+            </ol>
+            <div class="field-hint">Tip: You can also drag and drop the file into GitHub's web interface.</div>
           </div>
         </div>
         <div class="data-action-card">

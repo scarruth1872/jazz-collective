@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style id="cms-custom-css"></style>
+    <!-- Google Analytics placeholder -->
+    <script id="cms-ga"></script>
 </head>
 <body>
 
@@ -22,13 +25,11 @@
                 <span></span><span></span><span></span>
             </button>
             <ul class="nav-links" id="nav-links" role="list">
-                <li><a href="#home"    class="nav-link" data-section="home">Home</a></li>
-                <li><a href="#about"   class="nav-link" data-section="about">About</a></li>
-                <li><a href="#gallery" class="nav-link" data-section="gallery">Gallery</a></li>
-                <li><a href="#events"  class="nav-link" data-section="events">Events</a></li>
-                <li><a href="#blog"    class="nav-link" data-section="blog">Blog</a></li>
-                <li><a href="#contact" class="nav-link nav-cta" data-section="contact">Book Now</a></li>
+                <!-- Navigation links injected here -->
             </ul>
+            <div class="nav-socials" id="cms-nav-socials">
+                <!-- Social links injected here -->
+            </div>
         </div>
     </nav>
 
@@ -38,22 +39,18 @@
     <header class="hero" id="home">
         <div class="hero-content">
             <h1 class="fade-in"><span id="cms-hero-title">KRYSTAL HARROW</span> <br><span class="gold-text" id="cms-hero-subtitle">&amp; THE JAZZ COLLECTIVE</span></h1>
-            <div class="hero-images">
-                <div class="img-wrapper slide-up" style="--delay: 0.2s">
-                    <img id="cms-hero-img1" src="images/Photos-3-001/IMG_20260503_112550.jpg" alt="Krystal Harrow performing live">
-                </div>
-                <div class="img-wrapper slide-up" style="--delay: 0.4s">
-                    <img id="cms-hero-img2" src="images/Photos-3-001/IMG_20260503_112550 (6).jpg" alt="The Jazz Collective on stage">
-                </div>
+            <div class="hero-slideshow" id="cms-hero-slides">
+                <!-- Slides injected here -->
             </div>
         </div>
     </header>
 
     <main>
-        <!-- ═══════════════════════════════════════════
-             ABOUT / INTRODUCTION
-        ═══════════════════════════════════════════ -->
-        <section class="split-section" id="about">
+        <div id="cms-section-about">
+            <!-- ═══════════════════════════════════════════
+                 ABOUT / INTRODUCTION
+            ═══════════════════════════════════════════ -->
+            <section class="split-section" id="about">
             <div class="section-images fade-in">
                 <img id="cms-about-intro-img" src="images/Photos-3-001/IMG_20260503_112549.jpg" alt="Introduction to Jazz" class="main-img">
             </div>
@@ -139,6 +136,7 @@
                 <div class="star-icon right">✻</div>
             </div>
         </section>
+        </div>
 
         <!-- ═══════════════════════════════════════════
              GALLERY
@@ -316,6 +314,36 @@
         </section>
 
         <!-- ═══════════════════════════════════════════
+             TESTIMONIALS
+        ═══════════════════════════════════════════ -->
+        <section class="section-block" id="testimonials">
+            <div class="section-header fade-in">
+                <span class="section-label">REVIEWS</span>
+                <h2 id="cms-testimonials-title">What They Say</h2>
+                <div class="gold-line"></div>
+            </div>
+            <div class="testimonials-grid" id="cms-testimonials-list">
+                <!-- Testimonials injected here -->
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════
+             NEWSLETTER
+        ═══════════════════════════════════════════ -->
+        <section class="section-block newsletter-section" id="newsletter">
+            <div class="newsletter-card fade-in">
+                <h2 id="cms-newsletter-heading">Stay Tuned</h2>
+                <p id="cms-newsletter-body">Join our mailing list for tour dates and exclusive stories.</p>
+                <div id="cms-newsletter-container">
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-cta" id="cms-newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════════════════════════
              BOOKING & CONTACT
         ═══════════════════════════════════════════ -->
         <section class="section-block contact-section" id="contact">
@@ -393,16 +421,14 @@
     ═══════════════════════════════════════════ -->
     <footer class="footer fade-in">
         <h2 class="thank-you"><span id="cms-footer-thankyou">THANK YOU</span><br><span class="star-icon inline">✻</span> <span class="gold-text" id="cms-footer-subtext">FOR YOUR ATTENTION</span></h2>
-        <nav class="footer-nav" aria-label="Footer Navigation">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#events">Events</a>
-            <a href="#blog">Blog</a>
-            <a href="#contact">Contact</a>
+        <nav class="footer-nav" id="footer-nav" aria-label="Footer Navigation">
+            <!-- Footer links injected here -->
         </nav>
         <p class="footer-credits" id="cms-footer-credits">Krystal Harrow &amp; The Jazz Collective</p>
         <p class="booking-info">Bookings: <a id="cms-footer-booking-url" href="https://linqapp.com/ynqjcd89o1pi" target="_blank" rel="noopener noreferrer" class="gold-text"><span id="cms-footer-booking-text">linqapp.com/ynqjcd89o1pi</span></a></p>
+        <div class="footer-socials" id="cms-footer-socials">
+            <!-- Social links injected here -->
+        </div>
         <div class="footer-bg">
             <img src="images/Photos-3-001/IMG_20260503_112549.jpg" alt="">
         </div>

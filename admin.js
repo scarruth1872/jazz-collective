@@ -123,9 +123,12 @@
     // Wire image size / focal point controls
     wireImageSizeControls();
     // Render dynamic sections
+    renderHeroImages();
+    renderNavigation();
     renderGallery();
     renderEvents();
     renderBlog();
+    renderTestimonials();
     // Theme
     wireTheme();
     // Data tab
@@ -139,9 +142,23 @@
     document.querySelectorAll('[data-path]').forEach(function(el){
       var path = el.dataset.path;
       var val = getPath(content, path);
-      el.value = val || '';
+
+      if (el.type === 'checkbox') {
+        el.checked = !!val;
+      } else {
+        el.value = val || '';
+      }
+
       el.addEventListener('input', function(){
-        setPath(content, path, el.value);
+        var newVal = el.type === 'checkbox' ? el.checked : el.value;
+        setPath(content, path, newVal);
+
+        // Live injection for Custom CSS
+        if (path === 'meta.customCss') {
+          var styleTag = window.parent.document.getElementById('cms-custom-css') || document.getElementById('cms-custom-css');
+          if (styleTag) styleTag.innerHTML = newVal;
+        }
+
         markUnsaved();
         debounce(save, 1200)();
       });
@@ -195,6 +212,186 @@
         });
       }
     });
+  }
+
+  /* ── Hero Slides Manager ─────────────────────────── */
+  function renderHeroImages() {
+    var container = $('hero-manager');
+    if (!container) return;
+    container.innerHTML = '';
+    (content.hero.images || []).forEach(function(item, i){
+      var div = document.createElement('div');
+      div.className = 'gallery-manage-item';
+      div.innerHTML =
+        '<img src="'+item.src+'" alt="'+(item.alt||'')+'">' +
+        '<div class="gallery-item-controls">' +
+          '<div class="gallery-item-actions">' +
+            '<button title="Edit" data-hi="'+i+'">✏️</button>' +
+            '<button title="Move Left" data-hl="'+i+'">←</button>' +
+            '<button title="Move Right" data-hr="'+i+'">→</button>' +
+            '<button title="Delete" class="del-btn" data-hx="'+i+'">🗑</button>' +
+          '</div>' +
+        '</div>';
+      container.appendChild(div);
+    });
+
+    container.addEventListener('click', function(e){
+      var t = e.target.closest('button');
+      if (!t) return;
+      if (t.dataset.hi !== undefined) openHeroModal(+t.dataset.hi);
+      if (t.dataset.hl !== undefined) moveList(content.hero.images, +t.dataset.hl, -1, renderHeroImages);
+      if (t.dataset.hr !== undefined) moveList(content.hero.images, +t.dataset.hr, 1, renderHeroImages);
+      if (t.dataset.hx !== undefined) { if(confirm('Remove this hero slide?')) { content.hero.images.splice(+t.dataset.hx,1); save(); renderHeroImages(); } }
+    });
+
+    $('btn-add-hero').onclick = function(){ openHeroModal(-1); };
+  }
+
+  function openHeroModal(idx) {
+    var isNew = idx < 0;
+    var item = isNew ? { src:'', alt:'' } : Object.assign({}, content.hero.images[idx]);
+    openModal(isNew ? 'Add Hero Slide' : 'Edit Hero Slide',
+      '<div class="field-group"><label class="field-label">Image URL</label><input class="field-input" id="hi-src" type="text" value="'+escHtml(item.src)+'"></div>'+
+      '<div class="field-group" style="margin-top:.75rem"><label class="field-label">Preview</label><div style="background:#000;height:120px;display:flex;align-items:center;justify-content:center;border-radius:6px;overflow:hidden"><img id="hi-preview" src="'+escHtml(item.src)+'" style="max-height:100%;max-width:100%;object-fit:contain"></div></div>'+
+      '<label class="img-upload-label" style="margin-top:.5rem;display:inline-flex">📁 Upload File<input type="file" accept="image/*" hidden id="hi-file"></label>'+
+      '<div class="field-group" style="margin-top:.75rem"><label class="field-label">Alt Text</label><input class="field-input" id="hi-alt" type="text" value="'+escHtml(item.alt)+'"></div>',
+      function(){
+        item.src = $('hi-src').value.trim();
+        item.alt = $('hi-alt').value.trim();
+        if (!item.src) { toast('Image URL required','error'); return false; }
+        if (isNew) content.hero.images.push(item);
+        else content.hero.images[idx] = item;
+        save(); renderHeroImages(); return true;
+      }
+    );
+    setTimeout(function(){
+      var src = $('hi-src'), prev = $('hi-preview'), file = $('hi-file');
+      if(src) src.addEventListener('input', function(){ if(prev) prev.src = src.value; });
+      if(file) file.addEventListener('change', function(){
+        var r = new FileReader();
+        r.onload = function(ev){ if(src) src.value=ev.target.result; if(prev) prev.src=ev.target.result; };
+        r.readAsDataURL(file.files[0]);
+      });
+    }, 50);
+  }
+
+  /* ── Navigation Manager ──────────────────────────── */
+  function renderNavigation() {
+    var container = $('nav-manager');
+    if (!container) return;
+    container.innerHTML = '';
+    (content.navigation || []).forEach(function(item, i){
+      var div = document.createElement('div');
+      div.className = 'list-item';
+      div.innerHTML =
+        '<div class="list-item-info">'+
+          '<div class="list-item-title">'+escHtml(item.label)+'</div>'+
+          '<div class="list-item-meta">'+escHtml(item.url)+'</div>'+
+        '</div>'+
+        '<div class="list-actions">'+
+          '<button class="btn-edit" data-ni="'+i+'">Edit</button>'+
+          '<button class="btn-edit" style="background:rgba(255,255,255,0.05)" data-nu="'+i+'">↑</button>'+
+          '<button class="btn-edit" style="background:rgba(255,255,255,0.05)" data-nd="'+i+'">↓</button>'+
+          '<button class="btn-delete" data-nx="'+i+'">Delete</button>'+
+        '</div>';
+      container.appendChild(div);
+    });
+
+    container.addEventListener('click', function(e){
+      var t = e.target;
+      if (t.dataset.ni !== undefined) openNavModal(+t.dataset.ni);
+      if (t.dataset.nu !== undefined) moveList(content.navigation, +t.dataset.nu, -1, renderNavigation);
+      if (t.dataset.nd !== undefined) moveList(content.navigation, +t.dataset.nd, 1, renderNavigation);
+      if (t.dataset.nx !== undefined) { if(confirm('Delete this menu item?')) { content.navigation.splice(+t.dataset.nx,1); save(); renderNavigation(); } }
+    });
+    $('btn-add-nav').onclick = function(){ openNavModal(-1); };
+  }
+
+  function openNavModal(idx) {
+    var isNew = idx < 0;
+    var item = isNew ? { label:'', url:'', section:'', isCta:false } : Object.assign({}, content.navigation[idx]);
+    openModal(isNew ? 'Add Menu Item' : 'Edit Menu Item',
+      '<div class="field-row">'+
+        '<div class="field-group"><label class="field-label">Label</label><input class="field-input" id="ni-label" type="text" value="'+escHtml(item.label)+'"></div>'+
+        '<div class="field-group"><label class="field-label">URL / Anchor</label><input class="field-input" id="ni-url" type="text" value="'+escHtml(item.url)+'"></div>'+
+      '</div>'+
+      '<div class="field-row" style="margin-top:.75rem">'+
+        '<div class="field-group"><label class="field-label">Section ID (for active state)</label><input class="field-input" id="ni-section" type="text" value="'+escHtml(item.section)+'"></div>'+
+        '<div class="field-group"><label class="field-label" style="opacity:0">CTA</label><label style="display:flex;align-items:center;gap:.5rem;font-size:.8rem;height:38px"><input type="checkbox" id="ni-cta" '+(item.isCta?'checked':'')+'> Show as CTA Button</label></div>'+
+      '</div>',
+      function(){
+        item.label = $('ni-label').value.trim();
+        item.url   = $('ni-url').value.trim();
+        item.section = $('ni-section').value.trim();
+        item.isCta = $('ni-cta').checked;
+        if (!item.label || !item.url) { toast('Label and URL required','error'); return false; }
+        if (isNew) content.navigation.push(item);
+        else content.navigation[idx] = item;
+        save(); renderNavigation(); return true;
+      }
+    );
+  }
+
+  function moveList(list, i, dir, cb) {
+    var j = i + dir;
+    if (j<0 || j>=list.length) return;
+    var tmp = list[i]; list[i] = list[j]; list[j] = tmp;
+    save(); cb();
+  }
+
+  /* ── Testimonials Manager ─────────────────────────── */
+  function renderTestimonials() {
+    var container = $('testimonials-manager');
+    if (!container) return;
+    container.innerHTML = '';
+    (content.testimonials || []).forEach(function(item, i){
+      var div = document.createElement('div');
+      div.className = 'list-item';
+      div.innerHTML =
+        '<div class="list-item-info">'+
+          '<div class="list-item-title">'+escHtml(item.name)+'</div>'+
+          '<div class="list-item-meta">'+'★'.repeat(item.stars)+' — "'+escHtml(item.quote)+'"</div>'+
+        '</div>'+
+        '<div class="list-actions">'+
+          '<button class="btn-edit" data-ti="'+i+'">Edit</button>'+
+          '<button class="btn-edit" style="background:rgba(255,255,255,0.05)" data-tu="'+i+'">↑</button>'+
+          '<button class="btn-edit" style="background:rgba(255,255,255,0.05)" data-td="'+i+'">↓</button>'+
+          '<button class="btn-delete" data-tx="'+i+'">Delete</button>'+
+        '</div>';
+      container.appendChild(div);
+    });
+
+    container.addEventListener('click', function(e){
+      var t = e.target;
+      if (t.dataset.ti !== undefined) openTestimonialModal(+t.dataset.ti);
+      if (t.dataset.tu !== undefined) moveList(content.testimonials, +t.dataset.tu, -1, renderTestimonials);
+      if (t.dataset.td !== undefined) moveList(content.testimonials, +t.dataset.td, 1, renderTestimonials);
+      if (t.dataset.tx !== undefined) { if(confirm('Delete this testimonial?')) { content.testimonials.splice(+t.dataset.tx,1); save(); renderTestimonials(); } }
+    });
+    $('btn-add-testimonial').onclick = function(){ openTestimonialModal(-1); };
+  }
+
+  function openTestimonialModal(idx) {
+    var isNew = idx < 0;
+    var item = isNew ? { name:'', quote:'', stars:5 } : Object.assign({}, content.testimonials[idx]);
+    openModal(isNew ? 'Add Testimonial' : 'Edit Testimonial',
+      '<div class="field-row">'+
+        '<div class="field-group"><label class="field-label">Name / Attribution</label><input class="field-input" id="ti-name" type="text" value="'+escHtml(item.name)+'"></div>'+
+        '<div class="field-group"><label class="field-label">Rating (1-5 Stars)</label><select class="field-select" id="ti-stars">'+
+          [1,2,3,4,5].map(function(s){ return '<option value="'+s+'" '+(item.stars===s?'selected':'')+'>'+s+' Stars</option>'; }).join('')+
+        '</select></div>'+
+      '</div>'+
+      '<div class="field-group" style="margin-top:.75rem"><label class="field-label">Quote</label><textarea class="field-textarea" id="ti-quote" rows="3">'+escHtml(item.quote)+'</textarea></div>',
+      function(){
+        item.name  = $('ti-name').value.trim();
+        item.quote = $('ti-quote').value.trim();
+        item.stars = parseInt($('ti-stars').value);
+        if (!item.name || !item.quote) { toast('Name and Quote required','error'); return false; }
+        if (isNew) content.testimonials.push(item);
+        else content.testimonials[idx] = item;
+        save(); renderTestimonials(); return true;
+      }
+    );
   }
 
   /* ── Gallery Manager ──────────────────────────────── */

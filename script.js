@@ -3,6 +3,19 @@
   if (typeof window.SITE_CONTENT === 'undefined') return;
   var C = window.SITE_CONTENT;
 
+  function injectVideo(parent, url) {
+    if (!url || !parent) return;
+    var vidId = "";
+    if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      vidId = url.split('v=')[1] || url.split('/').pop();
+      if (vidId.includes('&')) vidId = vidId.split('&')[0];
+      parent.innerHTML = '<iframe width="100%" height="450" src="https://www.youtube.com/embed/' + vidId + '" frameborder="0" allowfullscreen style="border-radius:var(--radius)"></iframe>';
+    } else if (url.includes('vimeo.com')) {
+      vidId = url.split('/').pop();
+      parent.innerHTML = '<iframe src="https://player.vimeo.com/video/' + vidId + '" width="100%" height="450" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="border-radius:var(--radius)"></iframe>';
+    }
+  }
+
   function setText(id, val) {
     var el = document.getElementById(id);
     if (el && val !== undefined) el.textContent = val;
@@ -38,14 +51,96 @@
     document.title = C.meta.title || document.title;
     var md = document.getElementById('cms-meta-desc');
     if (md) md.content = C.meta.description || md.content;
+
+    // Custom CSS
+    var customCss = document.getElementById('cms-custom-css');
+    if (customCss) customCss.innerHTML = C.meta.customCss || '';
+
+    // Google Analytics
+    var gaScript = document.getElementById('cms-ga');
+    if (gaScript && C.meta.googleAnalyticsId) {
+      gaScript.src = "https://www.googletagmanager.com/gtag/js?id=" + C.meta.googleAnalyticsId;
+      var gaInjected = document.getElementById('cms-ga-init');
+      if (!gaInjected) {
+        var s = document.createElement('script');
+        s.id = 'cms-ga-init';
+        s.innerHTML = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '" + C.meta.googleAnalyticsId + "');";
+        document.head.appendChild(s);
+      }
+    }
+  }
+
+  // Social Links
+  if (C.socials) {
+    var s = C.socials;
+    var navSoc = document.getElementById('cms-nav-socials');
+    var footSoc = document.getElementById('cms-footer-socials');
+    var html = '';
+    if (s.instagram) html += '<a href="'+s.instagram+'" class="social-link" target="_blank" aria-label="Instagram">IG</a>';
+    if (s.facebook)  html += '<a href="'+s.facebook+'" class="social-link" target="_blank" aria-label="Facebook">FB</a>';
+    if (s.youtube)   html += '<a href="'+s.youtube+'" class="social-link" target="_blank" aria-label="YouTube">YT</a>';
+    if (s.twitter)   html += '<a href="'+s.twitter+'" class="social-link" target="_blank" aria-label="Twitter">TW</a>';
+    if (navSoc) navSoc.innerHTML = html;
+    if (footSoc) footSoc.innerHTML = html;
+  }
+
+  // Navigation & Section Visibility
+  if (C.navigation) {
+    var navLinks = document.getElementById('nav-links');
+    var footNav  = document.getElementById('footer-nav');
+    var navHtml = '';
+    var footHtml = '';
+    
+    C.navigation.forEach(function(item) {
+      var isVisible = true;
+      if (item.section && C.sections && C.sections[item.section]) {
+        isVisible = C.sections[item.section].visible !== false;
+      }
+      
+      if (isVisible) {
+        var cls = item.isCta ? 'nav-link nav-cta' : 'nav-link';
+        navHtml += '<li><a href="'+item.url+'" class="'+cls+'" data-section="'+(item.section||'')+'">'+item.label+'</a></li>';
+        footHtml += '<a href="'+item.url+'" data-section="'+(item.section||'')+'">'+item.label+'</a>';
+      }
+
+      // Hide actual section if hidden
+      if (item.section && C.sections && C.sections[item.section]) {
+        var secEl = document.getElementById(item.section === 'about' ? 'cms-section-about' : item.section);
+        if (secEl) {
+          if (C.sections[item.section].visible === false) secEl.classList.add('cms-hidden-section');
+          else secEl.classList.remove('cms-hidden-section');
+        }
+      }
+    });
+    
+    if (navLinks) navLinks.innerHTML = navHtml;
+    if (footNav) footNav.innerHTML = footHtml;
   }
 
   // Hero
   if (C.hero) {
     setText('cms-hero-title', C.hero.title);
     setText('cms-hero-subtitle', C.hero.subtitle);
-    if (C.hero.image1) applyImg('cms-hero-img1', C.hero.image1);
-    if (C.hero.image2) applyImg('cms-hero-img2', C.hero.image2);
+
+    var slideContainer = document.getElementById('cms-hero-slides');
+    if (slideContainer && C.hero.images) {
+      slideContainer.innerHTML = C.hero.images.map(function(img, i) {
+        return '<div class="hero-slide' + (i === 0 ? ' active' : '') + '" style="background-image: url(\'' + img.src + '\')"></div>';
+      }).join('');
+      
+      // Auto-carousel
+      if (C.hero.images.length > 1) {
+        if (window._heroInterval) clearInterval(window._heroInterval);
+        var currentSlide = 0;
+        window._heroInterval = setInterval(function() {
+          var slides = slideContainer.querySelectorAll('.hero-slide');
+          if (slides.length === 0) return;
+          slides[currentSlide].classList.remove('active');
+          currentSlide = (currentSlide + 1) % slides.length;
+          slides[currentSlide].classList.add('active');
+        }, 5000);
+      }
+    }
   }
 
   // About
@@ -62,6 +157,12 @@
       setText('cms-about-char-body2', a.characteristics.body2);
       if (a.characteristics.smallImage) applyImg('cms-about-char-small', a.characteristics.smallImage);
       if (a.characteristics.mainImage)  applyImg('cms-about-char-main',  a.characteristics.mainImage);
+      
+      // Video check
+      if (a.characteristics.videoUrl) {
+          var mn = document.getElementById('cms-about-char-main');
+          if (mn) injectVideo(mn.parentElement, a.characteristics.videoUrl);
+      }
     }
     if (a.banner) {
       if (a.banner.image) applyImg('cms-banner-img', a.banner.image);
@@ -167,6 +268,34 @@
     setText('cms-footer-credits', C.footer.credits);
     setText('cms-footer-booking-text', C.footer.bookingLinkText);
     setHref('cms-footer-booking-url', C.footer.bookingUrl);
+  }
+
+  // Testimonials
+  if (C.testimonials) {
+    var tList = document.getElementById('cms-testimonials-list');
+    if (tList) {
+      tList.innerHTML = C.testimonials.map(function(t) {
+        return '<div class="testimonial-card fade-in">' +
+                 '<div class="testimonial-stars">' + '★'.repeat(t.stars) + '</div>' +
+                 '<div class="testimonial-quote">' + t.quote + '</div>' +
+                 '<div class="testimonial-name">' + t.name + '</div>' +
+               '</div>';
+      }).join('');
+    }
+  }
+
+  // Newsletter
+  if (C.newsletter) {
+    var h = document.getElementById('cms-newsletter-heading');
+    var b = document.getElementById('cms-newsletter-body');
+    var btn = document.getElementById('cms-newsletter-btn');
+    var container = document.getElementById('cms-newsletter-container');
+    if (h) h.textContent = C.newsletter.heading || '';
+    if (b) b.textContent = C.newsletter.body || '';
+    if (btn) btn.textContent = C.newsletter.buttonText || '';
+    if (container && C.newsletter.embedCode) {
+      container.innerHTML = C.newsletter.embedCode;
+    }
   }
 
   // Theme CSS variables
@@ -276,17 +405,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!valid) return;
 
-            // Simulate send
+            // Simulate send or use Formspree
             submitBtn.disabled = true;
             submitBtn.querySelector('.btn-text').textContent = 'Sending…';
 
-            setTimeout(() => {
-                form.reset();
-                submitBtn.disabled = false;
-                submitBtn.querySelector('.btn-text').textContent = 'Send Inquiry';
-                success.removeAttribute('hidden');
-                success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 1200);
+            var contactEmail = (window.SITE_CONTENT && window.SITE_CONTENT.meta && window.SITE_CONTENT.meta.contactEmail) || '';
+            
+            if (contactEmail) {
+                // Real submission via Formspree
+                var formData = new FormData(form);
+                var data = {};
+                formData.forEach((value, key) => { data[key] = value; });
+
+                // If it looks like an ID (no @), use /f/ID. If it's an email, use /{email}
+                var endpoint = contactEmail.includes('@') 
+                    ? 'https://formspree.io/' + encodeURIComponent(contactEmail)
+                    : 'https://formspree.io/f/' + encodeURIComponent(contactEmail);
+
+                fetch(endpoint, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+                }).then(response => {
+                    if (response.ok) {
+                        form.reset();
+                        success.removeAttribute('hidden');
+                        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    } else {
+                        alert('Oops! There was a problem submitting your form. Please try again later.');
+                    }
+                }).catch(error => {
+                    alert('Oops! There was a problem submitting your form.');
+                }).finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector('.btn-text').textContent = 'Send Inquiry';
+                });
+            } else {
+                // Simulation mode
+                setTimeout(() => {
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.querySelector('.btn-text').textContent = 'Send Inquiry';
+                    success.removeAttribute('hidden');
+                    success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 1200);
+            }
         });
 
         // Clear red border on input
