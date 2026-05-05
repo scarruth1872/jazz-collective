@@ -1,502 +1,1087 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="cms-title">Krystal Harrow & The Jazz Collective</title>
-    <meta id="cms-meta-desc" name="description" content="Krystal Harrow is an established vocalist and owner of Krystal Harrow Entertainment, offering premium musical experiences across Jazz, Gospel, R&B, and more. Book her for your next event.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <style id="cms-custom-css"></style>
-    <!-- Dynamic SEO -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" id="og-title" content="Krystal Harrow">
-    <meta property="og:description" id="og-desc" content="Premium Jazz Entertainment">
-    <meta property="og:image" id="og-img" content="">
-    <!-- Google Analytics placeholder -->
-    <script id="cms-ga"></script>
-</head>
-<body>
-
-    <!-- ═══════════════════════════════════════════
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title id="cms-title">Krystal Harrow & The Jazz Collective</title>
+        <meta
+            id="cms-meta-desc"
+            name="description"
+            content="Krystal Harrow is an established vocalist and owner of Krystal Harrow Entertainment, offering premium musical experiences across Jazz, Gospel, R&B, and more. Book her for your next event."
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <style id="cms-custom-css"></style>
+        <!-- Dynamic SEO -->
+        <meta property="og:type" content="website" />
+        <meta property="og:title" id="og-title" content="Krystal Harrow" />
+        <meta
+            property="og:description"
+            id="og-desc"
+            content="Premium Jazz Entertainment"
+        />
+        <meta property="og:image" id="og-img" content="" />
+        <!-- Google Analytics placeholder -->
+        <script id="cms-ga"></script>
+        <!-- JSON-LD Structured Data (SEO) -->
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "MusicGroup",
+                        "name": "Krystal Harrow & The Jazz Collective",
+                        "description": "Premium jazz, gospel, R&B, and fusion entertainment for events of any scale.",
+                        "url": "https://jazz-collective.netlify.app",
+                        "sameAs": [
+                            "https://instagram.com",
+                            "https://facebook.com",
+                            "https://youtube.com"
+                        ],
+                        "foundingDate": "2026",
+                        "member": {
+                            "@type": "Person",
+                            "name": "Krystal Harrow",
+                            "description": "Vocalist originally from New York, currently based in North Carolina. Spans Jazz, Gospel, R&B, Hip-hop, and French African music.",
+                            "birthPlace": "New York",
+                            "homeLocation": {
+                                "@type": "Place",
+                                "address": {
+                                    "@type": "PostalAddress",
+                                    "addressRegion": "NC",
+                                    "addressCountry": "US"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "@type": "Organization",
+                        "name": "Krystal Harrow Entertainment",
+                        "url": "https://jazz-collective.netlify.app",
+                        "logo": "https://jazz-collective.netlify.app/images/Photos-3-001/IMG_20260503_112550.jpg",
+                        "sameAs": ["https://linqapp.com/ynqjcd89o1pi"],
+                        "description": "Tailored musical experiences for events of any scale — solo vocal, duo, trio, or full band."
+                    },
+                    {
+                        "@type": "WebSite",
+                        "name": "Krystal Harrow & The Jazz Collective",
+                        "url": "https://jazz-collective.netlify.app"
+                    },
+                    {
+                        "@type": "Event",
+                        "name": "Summer Jazz at the Plaza",
+                        "startDate": "2026-06-14",
+                        "location": {
+                            "@type": "Place",
+                            "name": "Corpening Plaza Amphitheater",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "addressLocality": "Morganton",
+                                "addressRegion": "NC",
+                                "addressCountry": "US"
+                            }
+                        },
+                        "url": "https://linqapp.com/ynqjcd89o1pi",
+                        "performer": {
+                            "@type": "MusicGroup",
+                            "name": "Krystal Harrow & The Jazz Collective"
+                        }
+                    },
+                    {
+                        "@type": "Event",
+                        "name": "Independence Day Gala",
+                        "startDate": "2026-07-04",
+                        "location": {
+                            "@type": "Place",
+                            "name": "Benton Convention Center",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "addressLocality": "Winston-Salem",
+                                "addressRegion": "NC",
+                                "addressCountry": "US"
+                            }
+                        },
+                        "url": "https://linqapp.com/ynqjcd89o1pi",
+                        "performer": {
+                            "@type": "MusicGroup",
+                            "name": "Krystal Harrow & The Jazz Collective"
+                        }
+                    },
+                    {
+                        "@type": "Event",
+                        "name": "Fusion Nights — Late Session",
+                        "startDate": "2026-08-23",
+                        "location": {
+                            "@type": "Place",
+                            "name": "The Green Bean",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "addressLocality": "Greensboro",
+                                "addressRegion": "NC",
+                                "addressCountry": "US"
+                            }
+                        },
+                        "url": "https://linqapp.com/ynqjcd89o1pi",
+                        "performer": {
+                            "@type": "MusicGroup",
+                            "name": "Krystal Harrow & The Jazz Collective"
+                        }
+                    },
+                    {
+                        "@type": "Event",
+                        "name": "Caribbean Jazz Experience",
+                        "startDate": "2026-09-07",
+                        "location": {
+                            "@type": "Place",
+                            "name": "Piedmont Hall",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "addressLocality": "Charlotte",
+                                "addressRegion": "NC",
+                                "addressCountry": "US"
+                            }
+                        },
+                        "url": "https://linqapp.com/ynqjcd89o1pi",
+                        "performer": {
+                            "@type": "MusicGroup",
+                            "name": "Krystal Harrow & The Jazz Collective"
+                        }
+                    },
+                    {
+                        "@type": "Event",
+                        "name": "Gospel & Jazz Brunch",
+                        "startDate": "2026-10-19",
+                        "location": {
+                            "@type": "Place",
+                            "name": "Mayor's Building Terrace",
+                            "address": {
+                                "@type": "PostalAddress",
+                                "addressLocality": "Winston-Salem",
+                                "addressRegion": "NC",
+                                "addressCountry": "US"
+                            }
+                        },
+                        "url": "https://linqapp.com/ynqjcd89o1pi",
+                        "performer": {
+                            "@type": "MusicGroup",
+                            "name": "Krystal Harrow & The Jazz Collective"
+                        }
+                    }
+                ]
+            }
+        </script>
+    </head>
+    <body>
+        <!-- ═══════════════════════════════════════════
          STICKY NAVIGATION
     ═══════════════════════════════════════════ -->
-    <nav class="site-nav" id="site-nav" aria-label="Main Navigation">
-        <div class="nav-inner">
-            <a href="#home" class="nav-brand" aria-label="Home">KH <span class="gold-text">&</span> TJC</a>
-            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-            <ul class="nav-links" id="nav-links" role="list">
-                <!-- Navigation links injected here -->
-            </ul>
-            <div class="nav-socials" id="cms-nav-socials">
-                <!-- Social links injected here -->
+        <nav class="site-nav" id="site-nav" aria-label="Main Navigation">
+            <div class="nav-inner">
+                <a href="#home" class="nav-brand" aria-label="Home"
+                    >KH <span class="gold-text">&</span> TJC</a
+                >
+                <button
+                    class="nav-toggle"
+                    id="nav-toggle"
+                    aria-label="Toggle menu"
+                    aria-expanded="false"
+                >
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-links" id="nav-links" role="list">
+                    <!-- Navigation links injected here -->
+                </ul>
+                <div class="nav-socials" id="cms-nav-socials">
+                    <!-- Social links injected here -->
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- ═══════════════════════════════════════════
+        <!-- ═══════════════════════════════════════════
          HERO
     ═══════════════════════════════════════════ -->
-    <header class="hero" id="home">
-        <div class="hero-content">
-            <h1 class="fade-in"><span id="cms-hero-title">KRYSTAL HARROW</span> <br><span class="gold-text" id="cms-hero-subtitle">&amp; THE JAZZ COLLECTIVE</span></h1>
-            <div class="hero-slideshow" id="cms-hero-slides">
-                <!-- Slides injected here -->
+        <header class="hero" id="home">
+            <div class="hero-content">
+                <h1 class="fade-in">
+                    <span id="cms-hero-title">KRYSTAL HARROW</span> <br /><span
+                        class="gold-text"
+                        id="cms-hero-subtitle"
+                        >&amp; THE JAZZ COLLECTIVE</span
+                    >
+                </h1>
+                <div class="hero-slideshow" id="cms-hero-slides">
+                    <!-- Slides injected here -->
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        <div id="cms-section-about">
-            <!-- ═══════════════════════════════════════════
+        <main>
+            <div id="cms-section-about">
+                <!-- ═══════════════════════════════════════════
                  ABOUT / INTRODUCTION
             ═══════════════════════════════════════════ -->
-            <section class="split-section" id="about">
-            <div class="section-images fade-in">
-                <img id="cms-about-intro-img" src="images/Photos-3-001/IMG_20260503_112549.jpg" alt="Introduction to Jazz" class="main-img">
-            </div>
-            <div class="section-text fade-in">
-                <h2 id="cms-about-intro-heading">Introduction <br>to Jazz</h2>
-                <div class="star-icon">✻</div>
-                <p id="cms-about-intro-body">Krystal Harrow is an established vocalist originally from New York and currently based in North Carolina. With a rich musical background rooted in Caribbean flair and steel band percussions, she is a master at sight-reading and has consistently excelled in musical competitions.</p>
-            </div>
-        </section>
+                <section class="split-section" id="about">
+                    <div class="section-images fade-in">
+                        <img
+                            id="cms-about-intro-img"
+                            src="images/Photos-3-001/IMG_20260503_112549.jpg"
+                            alt="Introduction to Jazz"
+                            class="main-img"
+                        />
+                    </div>
+                    <div class="section-text fade-in">
+                        <h2 id="cms-about-intro-heading">
+                            Introduction <br />to Jazz
+                        </h2>
+                        <div class="star-icon">✻</div>
+                        <p id="cms-about-intro-body">
+                            Krystal Harrow is an established vocalist originally
+                            from New York and currently based in North Carolina.
+                            With a rich musical background rooted in Caribbean
+                            flair and steel band percussions, she is a master at
+                            sight-reading and has consistently excelled in
+                            musical competitions.
+                        </p>
+                    </div>
+                </section>
 
-        <!-- Jazz Characteristics -->
-        <section class="split-section reverse">
-            <div class="section-text fade-in">
-                <h2 id="cms-about-char-heading">Jazz Characteristics</h2>
-                <p id="cms-about-char-body1">Her repertoire spans multiple genres, making every performance a unique and vibrant experience. She effortlessly transitions between Jazz, Gospel, R&amp;B, Hip-hop, and French African music.</p>
-                <p id="cms-about-char-body2">Whether delivering a soul-stirring jazz standard or bringing high energy to an R&amp;B classic, Krystal's vocal characteristics are defined by her impeccable control, emotional depth, and versatile range.</p>
-                <div class="small-images">
-                    <img id="cms-about-char-small" src="images/Photos-3-001/IMG_20260503_112549 (1).png" alt="Band Rehearsal">
-                </div>
-            </div>
-            <div class="section-images fade-in">
-                <img id="cms-about-char-main" src="images/Photos-3-001/IMG_20260503_112549 (4).png" alt="Jazz Characteristics">
-            </div>
-        </section>
+                <!-- Jazz Characteristics -->
+                <section class="split-section reverse">
+                    <div class="section-text fade-in">
+                        <h2 id="cms-about-char-heading">
+                            Jazz Characteristics
+                        </h2>
+                        <p id="cms-about-char-body1">
+                            Her repertoire spans multiple genres, making every
+                            performance a unique and vibrant experience. She
+                            effortlessly transitions between Jazz, Gospel,
+                            R&amp;B, Hip-hop, and French African music.
+                        </p>
+                        <p id="cms-about-char-body2">
+                            Whether delivering a soul-stirring jazz standard or
+                            bringing high energy to an R&amp;B classic,
+                            Krystal's vocal characteristics are defined by her
+                            impeccable control, emotional depth, and versatile
+                            range.
+                        </p>
+                        <div class="small-images">
+                            <img
+                                id="cms-about-char-small"
+                                src="images/Photos-3-001/IMG_20260503_112549 (1).png"
+                                alt="Band Rehearsal"
+                            />
+                        </div>
+                    </div>
+                    <div class="section-images fade-in">
+                        <img
+                            id="cms-about-char-main"
+                            src="images/Photos-3-001/IMG_20260503_112549 (4).png"
+                            alt="Jazz Characteristics"
+                        />
+                    </div>
+                </section>
 
-        <!-- Full width band image -->
-        <section class="full-width-image fade-in">
-            <div class="banner-container">
-                <img id="cms-banner-img" src="images/Photos-3-001/IMG_20260503_112550 (6).jpg" alt="The Jazz Collective Live">
-                <h2 class="banner-text" id="cms-banner-text">THE JAZZ<br>COLLECTIVE</h2>
-            </div>
-        </section>
+                <!-- Full width band image -->
+                <section class="full-width-image fade-in">
+                    <div class="banner-container">
+                        <img
+                            id="cms-banner-img"
+                            src="images/Photos-3-001/IMG_20260503_112550 (6).jpg"
+                            alt="The Jazz Collective Live"
+                        />
+                        <h2 class="banner-text" id="cms-banner-text">
+                            THE JAZZ<br />COLLECTIVE
+                        </h2>
+                    </div>
+                </section>
 
-        <!-- Modern and Fusion Jazz -->
-        <section class="split-section">
-            <div class="section-text fade-in">
-                <h2 id="cms-about-modern-heading">Modern and<br>Fusion Jazz</h2>
-                <div class="text-columns">
-                    <p id="cms-about-modern-body1">Krystal has toured with various artists as a background vocalist and has been featured in Gospel USA as part of an elite female vocalist group.</p>
-                    <p id="cms-about-modern-body2">Her recent performances include high-profile shows with her jazz band at the Mayor's Building in Winston-Salem, NC, blending modern arrangements with classic fusion elements.</p>
-                </div>
-                <div class="star-icon left">✻</div>
-            </div>
-            <div class="section-images fade-in">
-                <img id="cms-about-modern-img" src="images/Photos-3-001/IMG_20260503_112549 (9).png" alt="Modern Jazz Performance">
-            </div>
-        </section>
+                <!-- Modern and Fusion Jazz -->
+                <section class="split-section">
+                    <div class="section-text fade-in">
+                        <h2 id="cms-about-modern-heading">
+                            Modern and<br />Fusion Jazz
+                        </h2>
+                        <div class="text-columns">
+                            <p id="cms-about-modern-body1">
+                                Krystal has toured with various artists as a
+                                background vocalist and has been featured in
+                                Gospel USA as part of an elite female vocalist
+                                group.
+                            </p>
+                            <p id="cms-about-modern-body2">
+                                Her recent performances include high-profile
+                                shows with her jazz band at the Mayor's Building
+                                in Winston-Salem, NC, blending modern
+                                arrangements with classic fusion elements.
+                            </p>
+                        </div>
+                        <div class="star-icon left">✻</div>
+                    </div>
+                    <div class="section-images fade-in">
+                        <img
+                            id="cms-about-modern-img"
+                            src="images/Photos-3-001/IMG_20260503_112549 (9).png"
+                            alt="Modern Jazz Performance"
+                        />
+                    </div>
+                </section>
 
-        <!-- Jazz Around the World -->
-        <section class="split-section reverse center-align">
-            <div class="section-text fade-in">
-                <h2 id="cms-about-world-heading">Jazz Around<br>the World</h2>
-                <p id="cms-about-world-body">Bringing her talents to stages across the nation, Krystal has performed at a wide array of events including stadium shows, holiday galas, weddings, and cultural soirées.</p>
-            </div>
-            <div class="section-images fade-in">
-                <img id="cms-about-world-img" src="images/Photos-3-001/IMG_20260503_112549 (10).png" alt="Global Jazz Performance">
-            </div>
-        </section>
+                <!-- Jazz Around the World -->
+                <section class="split-section reverse center-align">
+                    <div class="section-text fade-in">
+                        <h2 id="cms-about-world-heading">
+                            Jazz Around<br />the World
+                        </h2>
+                        <p id="cms-about-world-body">
+                            Bringing her talents to stages across the nation,
+                            Krystal has performed at a wide array of events
+                            including stadium shows, holiday galas, weddings,
+                            and cultural soirées.
+                        </p>
+                    </div>
+                    <div class="section-images fade-in">
+                        <img
+                            id="cms-about-world-img"
+                            src="images/Photos-3-001/IMG_20260503_112549 (10).png"
+                            alt="Global Jazz Performance"
+                        />
+                    </div>
+                </section>
 
-        <!-- Global Map Section -->
-        <section class="split-section map-section">
-            <div class="section-images fade-in">
-                <img id="cms-about-map-img" src="images/world_map_gold_1777821050013.png" alt="World Map" class="map-img">
-            </div>
-            <div class="section-text fade-in">
-                <h2 id="cms-about-map-heading">Jazz festivals<br>globally</h2>
-                <p id="cms-about-map-body1">Krystal Harrow Entertainment provides tailored musical experiences for events of any scale.</p>
-                <p id="cms-about-map-body2">From solo vocal performances with backing tracks to a full-sized dynamic band, services are fully customizable to meet the client's vision and elevate the atmosphere.</p>
-                <div class="star-icon right">✻</div>
-            </div>
-        </section>
+                <!-- Global Map Section -->
+                <section class="split-section map-section">
+                    <div class="section-images fade-in">
+                        <img
+                            id="cms-about-map-img"
+                            src="images/world_map_gold_1777821050013.png"
+                            alt="World Map"
+                            class="map-img"
+                        />
+                    </div>
+                    <div class="section-text fade-in">
+                        <h2 id="cms-about-map-heading">
+                            Jazz festivals<br />globally
+                        </h2>
+                        <p id="cms-about-map-body1">
+                            Krystal Harrow Entertainment provides tailored
+                            musical experiences for events of any scale.
+                        </p>
+                        <p id="cms-about-map-body2">
+                            From solo vocal performances with backing tracks to
+                            a full-sized dynamic band, services are fully
+                            customizable to meet the client's vision and elevate
+                            the atmosphere.
+                        </p>
+                        <div class="star-icon right">✻</div>
+                    </div>
+                </section>
 
-        <!-- Education & Conservatories -->
-        <section class="split-section">
-            <div class="section-images collage-stack fade-in">
-                <img id="cms-about-edu-img1" src="images/Photos-3-001/IMG_20260503_112549 (15).png" alt="Education">
-                <img id="cms-about-edu-img2" src="images/Photos-3-001/IMG_20260503_112549 (18).png" alt="Performance">
+                <!-- Education & Conservatories -->
+                <section class="split-section">
+                    <div class="section-images collage-stack fade-in">
+                        <img
+                            id="cms-about-edu-img1"
+                            src="images/Photos-3-001/IMG_20260503_112549 (15).png"
+                            alt="Education"
+                        />
+                        <img
+                            id="cms-about-edu-img2"
+                            src="images/Photos-3-001/IMG_20260503_112549 (18).png"
+                            alt="Performance"
+                        />
+                    </div>
+                    <div class="section-text fade-in">
+                        <h2 id="cms-about-edu-heading">
+                            Jazz education &<br />conservatories
+                        </h2>
+                        <p id="cms-about-edu-body1">
+                            Beyond live performances, Krystal is deeply
+                            passionate about music education and mentorship.
+                        </p>
+                        <p id="cms-about-edu-body2">
+                            She offers professional vocal coaching and
+                            empowerment through music, helping aspiring artists
+                            discover their voice and refine their craft in a
+                            supportive environment.
+                        </p>
+                        <div class="star-icon right">✻</div>
+                    </div>
+                </section>
             </div>
-            <div class="section-text fade-in">
-                <h2 id="cms-about-edu-heading">Jazz education &<br>conservatories</h2>
-                <p id="cms-about-edu-body1">Beyond live performances, Krystal is deeply passionate about music education and mentorship.</p>
-                <p id="cms-about-edu-body2">She offers professional vocal coaching and empowerment through music, helping aspiring artists discover their voice and refine their craft in a supportive environment.</p>
-                <div class="star-icon right">✻</div>
-            </div>
-        </section>
-        </div>
 
-        <!-- ═══════════════════════════════════════════
+            <!-- ═══════════════════════════════════════════
              GALLERY
         ═══════════════════════════════════════════ -->
-        <section class="section-block" id="gallery">
-            <div class="section-header fade-in">
-                <p class="section-label">A Visual Journey</p>
-                <h2>Photo Gallery</h2>
-                <div class="gold-line"></div>
-            </div>
+            <section class="section-block" id="gallery">
+                <div class="section-header fade-in">
+                    <p class="section-label">A Visual Journey</p>
+                    <h2>Photo Gallery</h2>
+                    <div class="gold-line"></div>
+                </div>
 
-            <div class="gallery-grid" id="cms-gallery-grid">
-                <div class="gallery-item fade-in g-tall">
-                    <img src="images/Photos-3-001/IMG_20260503_112549 (21).png" alt="Krystal Harrow performing" loading="lazy">
-                    <div class="gallery-overlay"><span>Live Performance</span></div>
+                <div class="gallery-grid" id="cms-gallery-grid">
+                    <div class="gallery-item fade-in g-tall">
+                        <img
+                            src="images/Photos-3-001/IMG_20260503_112549 (21).png"
+                            alt="Krystal Harrow performing"
+                            loading="lazy"
+                        />
+                        <div class="gallery-overlay">
+                            <span>Live Performance</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img
+                            src="images/Photos-3-001/IMG_20260503_112549 (22).png"
+                            alt="The Jazz Collective"
+                            loading="lazy"
+                        />
+                        <div class="gallery-overlay">
+                            <span>The Collective</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img
+                            src="images/Photos-3-001/IMG_20260503_112549 (24).png"
+                            alt="Jazz rehearsal"
+                            loading="lazy"
+                        />
+                        <div class="gallery-overlay">
+                            <span>Rehearsal</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in g-wide">
+                        <img
+                            src="images/Photos-3-001/IMG_20260503_112550 (14).png"
+                            alt="Stage lights and energy"
+                            loading="lazy"
+                        />
+                        <div class="gallery-overlay">
+                            <span>Stage Energy</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img
+                            src="images/Photos-3-001/IMG_20260503_112549 (25).png"
+                            alt="Soulful performance"
+                            loading="lazy"
+                        />
+                        <div class="gallery-overlay">
+                            <span>Soul & Sound</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img
+                            src="images/Photos-3-001/IMG_20260503_112549 (26).png"
+                            alt="Jazz vibes"
+                            loading="lazy"
+                        />
+                        <div class="gallery-overlay">
+                            <span>Jazz Vibes</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in g-tall">
+                        <img
+                            src="images/Photos-3-001/IMG_20260503_112549 (27).png"
+                            alt="Intimate performance"
+                            loading="lazy"
+                        />
+                        <div class="gallery-overlay">
+                            <span>Intimate Set</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in g-wide">
+                        <img
+                            src="images/Photos-3-001/IMG_20260503_112550 (3).png"
+                            alt="Full band ensemble"
+                            loading="lazy"
+                        />
+                        <div class="gallery-overlay">
+                            <span>Full Ensemble</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item fade-in">
+                        <img
+                            src="images/Photos-3-001/IMG_20260503_112550 (12).png"
+                            alt="Krystal Harrow close-up"
+                            loading="lazy"
+                        />
+                        <div class="gallery-overlay">
+                            <span>The Voice</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/Photos-3-001/IMG_20260503_112549 (22).png" alt="The Jazz Collective" loading="lazy">
-                    <div class="gallery-overlay"><span>The Collective</span></div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/Photos-3-001/IMG_20260503_112549 (24).png" alt="Jazz rehearsal" loading="lazy">
-                    <div class="gallery-overlay"><span>Rehearsal</span></div>
-                </div>
-                <div class="gallery-item fade-in g-wide">
-                    <img src="images/Photos-3-001/IMG_20260503_112550 (14).png" alt="Stage lights and energy" loading="lazy">
-                    <div class="gallery-overlay"><span>Stage Energy</span></div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/Photos-3-001/IMG_20260503_112549 (25).png" alt="Soulful performance" loading="lazy">
-                    <div class="gallery-overlay"><span>Soul & Sound</span></div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/Photos-3-001/IMG_20260503_112549 (26).png" alt="Jazz vibes" loading="lazy">
-                    <div class="gallery-overlay"><span>Jazz Vibes</span></div>
-                </div>
-                <div class="gallery-item fade-in g-tall">
-                    <img src="images/Photos-3-001/IMG_20260503_112549 (27).png" alt="Intimate performance" loading="lazy">
-                    <div class="gallery-overlay"><span>Intimate Set</span></div>
-                </div>
-                <div class="gallery-item fade-in g-wide">
-                    <img src="images/Photos-3-001/IMG_20260503_112550 (3).png" alt="Full band ensemble" loading="lazy">
-                    <div class="gallery-overlay"><span>Full Ensemble</span></div>
-                </div>
-                <div class="gallery-item fade-in">
-                    <img src="images/Photos-3-001/IMG_20260503_112550 (12).png" alt="Krystal Harrow close-up" loading="lazy">
-                    <div class="gallery-overlay"><span>The Voice</span></div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- ═══════════════════════════════════════════
+            <!-- ═══════════════════════════════════════════
              EVENTS
         ═══════════════════════════════════════════ -->
-        <section class="section-block events-section" id="events">
-            <div class="section-header fade-in">
-                <p class="section-label">Don't Miss Out</p>
-                <h2>Upcoming Events</h2>
-                <div class="gold-line"></div>
-            </div>
-
-            <div class="events-list" id="cms-events-list">
-                <div class="event-item fade-in">
-                    <div class="event-date-block">
-                        <span class="event-month">JUN</span>
-                        <span class="event-day">14</span>
-                    </div>
-                    <div class="event-details">
-                        <h3 class="event-title">Summer Jazz at the Plaza</h3>
-                        <p class="event-meta"><span class="event-venue">Corpening Plaza Amphitheater</span> &mdash; Morganton, NC</p>
-                    </div>
-                    <a href="https://linqapp.com/ynqjcd89o1pi" target="_blank" rel="noopener noreferrer" class="event-btn" id="event-btn-1">Tickets &amp; Info</a>
+            <section class="section-block events-section" id="events">
+                <div class="section-header fade-in">
+                    <p class="section-label">Don't Miss Out</p>
+                    <h2>Upcoming Events</h2>
+                    <div class="gold-line"></div>
                 </div>
 
-                <div class="event-item fade-in">
-                    <div class="event-date-block">
-                        <span class="event-month">JUL</span>
-                        <span class="event-day">4</span>
+                <div class="events-list" id="cms-events-list">
+                    <div class="event-item fade-in">
+                        <div class="event-date-block">
+                            <span class="event-month">JUN</span>
+                            <span class="event-day">14</span>
+                        </div>
+                        <div class="event-details">
+                            <h3 class="event-title">
+                                Summer Jazz at the Plaza
+                            </h3>
+                            <p class="event-meta">
+                                <span class="event-venue"
+                                    >Corpening Plaza Amphitheater</span
+                                >
+                                &mdash; Morganton, NC
+                            </p>
+                        </div>
+                        <a
+                            href="https://linqapp.com/ynqjcd89o1pi"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="event-btn"
+                            id="event-btn-1"
+                            >Tickets &amp; Info</a
+                        >
                     </div>
-                    <div class="event-details">
-                        <h3 class="event-title">Independence Day Gala</h3>
-                        <p class="event-meta"><span class="event-venue">Benton Convention Center</span> &mdash; Winston-Salem, NC</p>
-                    </div>
-                    <a href="https://linqapp.com/ynqjcd89o1pi" target="_blank" rel="noopener noreferrer" class="event-btn" id="event-btn-2">Tickets &amp; Info</a>
-                </div>
 
-                <div class="event-item fade-in">
-                    <div class="event-date-block">
-                        <span class="event-month">AUG</span>
-                        <span class="event-day">23</span>
+                    <div class="event-item fade-in">
+                        <div class="event-date-block">
+                            <span class="event-month">JUL</span>
+                            <span class="event-day">4</span>
+                        </div>
+                        <div class="event-details">
+                            <h3 class="event-title">Independence Day Gala</h3>
+                            <p class="event-meta">
+                                <span class="event-venue"
+                                    >Benton Convention Center</span
+                                >
+                                &mdash; Winston-Salem, NC
+                            </p>
+                        </div>
+                        <a
+                            href="https://linqapp.com/ynqjcd89o1pi"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="event-btn"
+                            id="event-btn-2"
+                            >Tickets &amp; Info</a
+                        >
                     </div>
-                    <div class="event-details">
-                        <h3 class="event-title">Fusion Nights — Late Session</h3>
-                        <p class="event-meta"><span class="event-venue">The Green Bean</span> &mdash; Greensboro, NC</p>
-                    </div>
-                    <a href="https://linqapp.com/ynqjcd89o1pi" target="_blank" rel="noopener noreferrer" class="event-btn" id="event-btn-3">Tickets &amp; Info</a>
-                </div>
 
-                <div class="event-item fade-in">
-                    <div class="event-date-block">
-                        <span class="event-month">SEP</span>
-                        <span class="event-day">7</span>
+                    <div class="event-item fade-in">
+                        <div class="event-date-block">
+                            <span class="event-month">AUG</span>
+                            <span class="event-day">23</span>
+                        </div>
+                        <div class="event-details">
+                            <h3 class="event-title">
+                                Fusion Nights — Late Session
+                            </h3>
+                            <p class="event-meta">
+                                <span class="event-venue">The Green Bean</span>
+                                &mdash; Greensboro, NC
+                            </p>
+                        </div>
+                        <a
+                            href="https://linqapp.com/ynqjcd89o1pi"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="event-btn"
+                            id="event-btn-3"
+                            >Tickets &amp; Info</a
+                        >
                     </div>
-                    <div class="event-details">
-                        <h3 class="event-title">Caribbean Jazz Experience</h3>
-                        <p class="event-meta"><span class="event-venue">Piedmont Hall</span> &mdash; Charlotte, NC</p>
-                    </div>
-                    <a href="https://linqapp.com/ynqjcd89o1pi" target="_blank" rel="noopener noreferrer" class="event-btn" id="event-btn-4">Tickets &amp; Info</a>
-                </div>
 
-                <div class="event-item fade-in">
-                    <div class="event-date-block">
-                        <span class="event-month">OCT</span>
-                        <span class="event-day">19</span>
+                    <div class="event-item fade-in">
+                        <div class="event-date-block">
+                            <span class="event-month">SEP</span>
+                            <span class="event-day">7</span>
+                        </div>
+                        <div class="event-details">
+                            <h3 class="event-title">
+                                Caribbean Jazz Experience
+                            </h3>
+                            <p class="event-meta">
+                                <span class="event-venue">Piedmont Hall</span>
+                                &mdash; Charlotte, NC
+                            </p>
+                        </div>
+                        <a
+                            href="https://linqapp.com/ynqjcd89o1pi"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="event-btn"
+                            id="event-btn-4"
+                            >Tickets &amp; Info</a
+                        >
                     </div>
-                    <div class="event-details">
-                        <h3 class="event-title">Gospel &amp; Jazz Brunch</h3>
-                        <p class="event-meta"><span class="event-venue">Mayor's Building Terrace</span> &mdash; Winston-Salem, NC</p>
-                    </div>
-                    <a href="https://linqapp.com/ynqjcd89o1pi" target="_blank" rel="noopener noreferrer" class="event-btn" id="event-btn-5">Tickets &amp; Info</a>
-                </div>
-            </div>
-        </section>
 
-        <!-- ═══════════════════════════════════════════
+                    <div class="event-item fade-in">
+                        <div class="event-date-block">
+                            <span class="event-month">OCT</span>
+                            <span class="event-day">19</span>
+                        </div>
+                        <div class="event-details">
+                            <h3 class="event-title">
+                                Gospel &amp; Jazz Brunch
+                            </h3>
+                            <p class="event-meta">
+                                <span class="event-venue"
+                                    >Mayor's Building Terrace</span
+                                >
+                                &mdash; Winston-Salem, NC
+                            </p>
+                        </div>
+                        <a
+                            href="https://linqapp.com/ynqjcd89o1pi"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="event-btn"
+                            id="event-btn-5"
+                            >Tickets &amp; Info</a
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══════════════════════════════════════════
              BLOG / NEWS
         ═══════════════════════════════════════════ -->
-        <section class="section-block" id="blog">
-            <div class="section-header fade-in">
-                <p class="section-label">Latest Updates</p>
-                <h2>News &amp; Stories</h2>
-                <div class="gold-line"></div>
-            </div>
+            <section class="section-block" id="blog">
+                <div class="section-header fade-in">
+                    <p class="section-label">Latest Updates</p>
+                    <h2>News &amp; Stories</h2>
+                    <div class="gold-line"></div>
+                </div>
 
-            <div class="blog-grid" id="cms-blog-grid">
-                <article class="blog-card fade-in" id="blog-card-1">
-                    <div class="blog-img-wrap">
-                        <img src="images/Photos-3-001/IMG_20260503_112549 (19).png" alt="Caribbean Jazz Fusion" loading="lazy">
-                        <span class="blog-tag">Music</span>
-                    </div>
-                    <div class="blog-body">
-                        <p class="blog-date">April 28, 2026</p>
-                        <h3>The Magic of Caribbean Jazz Fusion</h3>
-                        <p>How the steel pan rhythms of Trinidad shaped a distinctly Caribbean approach to jazz improvisation, and what it means to bring that sound to American stages.</p>
-                        <a href="#contact" class="blog-read-more">Read More <span aria-hidden="true">→</span></a>
-                    </div>
-                </article>
+                <div class="blog-grid" id="cms-blog-grid">
+                    <article class="blog-card fade-in" id="blog-card-1">
+                        <div class="blog-img-wrap">
+                            <img
+                                src="images/Photos-3-001/IMG_20260503_112549 (19).png"
+                                alt="Caribbean Jazz Fusion"
+                                loading="lazy"
+                            />
+                            <span class="blog-tag">Music</span>
+                        </div>
+                        <div class="blog-body">
+                            <p class="blog-date">April 28, 2026</p>
+                            <h3>The Magic of Caribbean Jazz Fusion</h3>
+                            <p>
+                                How the steel pan rhythms of Trinidad shaped a
+                                distinctly Caribbean approach to jazz
+                                improvisation, and what it means to bring that
+                                sound to American stages.
+                            </p>
+                            <a href="#contact" class="blog-read-more"
+                                >Read More <span aria-hidden="true">→</span></a
+                            >
+                        </div>
+                    </article>
 
-                <article class="blog-card fade-in" id="blog-card-2">
-                    <div class="blog-img-wrap">
-                        <img src="images/Photos-3-001/IMG_20260503_112549 (21).png" alt="Vocal Techniques Workshop" loading="lazy">
-                        <span class="blog-tag">Education</span>
-                    </div>
-                    <div class="blog-body">
-                        <p class="blog-date">March 15, 2026</p>
-                        <h3>Vocal Techniques Workshop Recap</h3>
-                        <p>Over 40 aspiring vocalists joined Krystal for an intensive two-day vocal techniques and empowerment workshop — here are the key takeaways.</p>
-                        <a href="#contact" class="blog-read-more">Read More <span aria-hidden="true">→</span></a>
-                    </div>
-                </article>
+                    <article class="blog-card fade-in" id="blog-card-2">
+                        <div class="blog-img-wrap">
+                            <img
+                                src="images/Photos-3-001/IMG_20260503_112549 (21).png"
+                                alt="Vocal Techniques Workshop"
+                                loading="lazy"
+                            />
+                            <span class="blog-tag">Education</span>
+                        </div>
+                        <div class="blog-body">
+                            <p class="blog-date">March 15, 2026</p>
+                            <h3>Vocal Techniques Workshop Recap</h3>
+                            <p>
+                                Over 40 aspiring vocalists joined Krystal for an
+                                intensive two-day vocal techniques and
+                                empowerment workshop — here are the key
+                                takeaways.
+                            </p>
+                            <a href="#contact" class="blog-read-more"
+                                >Read More <span aria-hidden="true">→</span></a
+                            >
+                        </div>
+                    </article>
 
-                <article class="blog-card fade-in" id="blog-card-3">
-                    <div class="blog-img-wrap">
-                        <img src="images/Photos-3-001/IMG_20260503_112550 (14).png" alt="Mayor's Building Performance" loading="lazy">
-                        <span class="blog-tag">Behind the Scenes</span>
-                    </div>
-                    <div class="blog-body">
-                        <p class="blog-date">February 3, 2026</p>
-                        <h3>Behind the Scenes at the Mayor's Building</h3>
-                        <p>An exclusive look at the preparation, the sound check, and the electric atmosphere surrounding one of our most celebrated performances at Winston-Salem's Mayor's Building.</p>
-                        <a href="#contact" class="blog-read-more">Read More <span aria-hidden="true">→</span></a>
-                    </div>
-                </article>
-            </div>
-        </section>
+                    <article class="blog-card fade-in" id="blog-card-3">
+                        <div class="blog-img-wrap">
+                            <img
+                                src="images/Photos-3-001/IMG_20260503_112550 (14).png"
+                                alt="Mayor's Building Performance"
+                                loading="lazy"
+                            />
+                            <span class="blog-tag">Behind the Scenes</span>
+                        </div>
+                        <div class="blog-body">
+                            <p class="blog-date">February 3, 2026</p>
+                            <h3>Behind the Scenes at the Mayor's Building</h3>
+                            <p>
+                                An exclusive look at the preparation, the sound
+                                check, and the electric atmosphere surrounding
+                                one of our most celebrated performances at
+                                Winston-Salem's Mayor's Building.
+                            </p>
+                            <a href="#contact" class="blog-read-more"
+                                >Read More <span aria-hidden="true">→</span></a
+                            >
+                        </div>
+                    </article>
+                </div>
+            </section>
 
-        <!-- ═══════════════════════════════════════════
+            <!-- ═══════════════════════════════════════════
              TESTIMONIALS
         ═══════════════════════════════════════════ -->
-        <section class="section-block" id="testimonials">
-            <div class="section-header fade-in">
-                <span class="section-label">REVIEWS</span>
-                <h2 id="cms-testimonials-title">What They Say</h2>
-                <div class="gold-line"></div>
-            </div>
-            <div class="testimonials-grid" id="cms-testimonials-list">
-                <!-- Testimonials injected here -->
-            </div>
-        </section>
+            <section class="section-block" id="testimonials">
+                <div class="section-header fade-in">
+                    <span class="section-label">REVIEWS</span>
+                    <h2 id="cms-testimonials-title">What They Say</h2>
+                    <div class="gold-line"></div>
+                </div>
+                <div class="testimonials-grid" id="cms-testimonials-list">
+                    <!-- Testimonials injected here -->
+                </div>
+            </section>
 
-        <!-- ═══════════════════════════════════════════
+            <!-- ═══════════════════════════════════════════
              NEWSLETTER
         ═══════════════════════════════════════════ -->
-        <section class="section-block newsletter-section" id="newsletter">
-            <div class="newsletter-card fade-in">
-                <h2 id="cms-newsletter-heading">Stay Tuned</h2>
-                <p id="cms-newsletter-body">Join our mailing list for tour dates and exclusive stories.</p>
-                <div id="cms-newsletter-container">
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Your email address" required>
-                        <button type="submit" class="btn-cta" id="cms-newsletter-btn">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══════════════════════════════════════════
-             BOOKING & CONTACT
-        ═══════════════════════════════════════════ -->
-        <section class="section-block contact-section" id="contact">
-            <div class="contact-inner">
-                <div class="contact-left fade-in">
-                    <p class="section-label" id="cms-contact-label">Get In Touch</p>
-                    <h2><span id="cms-contact-heading">Book Krystal</span><br><span class="gold-text" id="cms-contact-subheading">for Your Event</span></h2>
-                    <div class="gold-line"></div>
-                    <p id="cms-contact-intro">Ready to elevate your event with world-class jazz? Fill out the form and Krystal's team will respond within 48 hours.</p>
-                    <p id="cms-contact-linq-intro">For fast-track bookings and direct availability, use the LinqApp link below:</p>
-                    <a id="cms-contact-linq-url" href="https://linqapp.com/ynqjcd89o1pi" target="_blank" rel="noopener noreferrer" class="linq-cta">
-                        <span class="linq-icon">✻</span>
-                        <span id="cms-contact-linq-text">Fast-Track Booking via LinqApp</span>
-                    </a>
-                    <div class="contact-photo">
-                        <img id="cms-contact-photo" src="images/Photos-3-001/IMG_20260503_112549 (27).png" alt="Krystal Harrow">
+            <section class="section-block newsletter-section" id="newsletter">
+                <div class="newsletter-card fade-in">
+                    <h2 id="cms-newsletter-heading">Stay Tuned</h2>
+                    <p id="cms-newsletter-body">
+                        Join our mailing list for tour dates and exclusive
+                        stories.
+                    </p>
+                    <div id="cms-newsletter-container">
+                        <form class="newsletter-form">
+                            <input
+                                type="email"
+                                placeholder="Your email address"
+                                required
+                            />
+                            <button
+                                type="submit"
+                                class="btn-cta"
+                                id="cms-newsletter-btn"
+                            >
+                                Subscribe
+                            </button>
+                        </form>
                     </div>
                 </div>
+            </section>
 
-                <div class="contact-right fade-in">
-                    <form class="booking-form" id="booking-form" novalidate>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="contact-name">Full Name <span class="req" aria-hidden="true">*</span></label>
-                                <input type="text" id="contact-name" name="name" placeholder="Jane Smith" required autocomplete="name">
+            <!-- ═══════════════════════════════════════════
+             BOOKING & CONTACT
+        ═══════════════════════════════════════════ -->
+            <section class="section-block contact-section" id="contact">
+                <div class="contact-inner">
+                    <div class="contact-left fade-in">
+                        <p class="section-label" id="cms-contact-label">
+                            Get In Touch
+                        </p>
+                        <h2>
+                            <span id="cms-contact-heading">Book Krystal</span
+                            ><br /><span
+                                class="gold-text"
+                                id="cms-contact-subheading"
+                                >for Your Event</span
+                            >
+                        </h2>
+                        <div class="gold-line"></div>
+                        <p id="cms-contact-intro">
+                            Ready to elevate your event with world-class jazz?
+                            Fill out the form and Krystal's team will respond
+                            within 48 hours.
+                        </p>
+                        <p id="cms-contact-linq-intro">
+                            For fast-track bookings and direct availability, use
+                            the LinqApp link below:
+                        </p>
+                        <a
+                            id="cms-contact-linq-url"
+                            href="https://linqapp.com/ynqjcd89o1pi"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="linq-cta"
+                        >
+                            <span class="linq-icon">✻</span>
+                            <span id="cms-contact-linq-text"
+                                >Fast-Track Booking via LinqApp</span
+                            >
+                        </a>
+                        <div class="contact-photo">
+                            <img
+                                id="cms-contact-photo"
+                                src="images/Photos-3-001/IMG_20260503_112549 (27).png"
+                                alt="Krystal Harrow"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="contact-right fade-in">
+                        <form class="booking-form" id="booking-form" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contact-name"
+                                        >Full Name
+                                        <span class="req" aria-hidden="true"
+                                            >*</span
+                                        ></label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="contact-name"
+                                        name="name"
+                                        placeholder="Jane Smith"
+                                        required
+                                        autocomplete="name"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-email"
+                                        >Email Address
+                                        <span class="req" aria-hidden="true"
+                                            >*</span
+                                        ></label
+                                    >
+                                    <input
+                                        type="email"
+                                        id="contact-email"
+                                        name="email"
+                                        placeholder="jane@example.com"
+                                        required
+                                        autocomplete="email"
+                                    />
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contact-phone"
+                                        >Phone Number</label
+                                    >
+                                    <input
+                                        type="tel"
+                                        id="contact-phone"
+                                        name="phone"
+                                        placeholder="+1 (555) 000-0000"
+                                        autocomplete="tel"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact-date"
+                                        >Event Date
+                                        <span class="req" aria-hidden="true"
+                                            >*</span
+                                        ></label
+                                    >
+                                    <input
+                                        type="date"
+                                        id="contact-date"
+                                        name="event_date"
+                                        required
+                                    />
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="contact-email">Email Address <span class="req" aria-hidden="true">*</span></label>
-                                <input type="email" id="contact-email" name="email" placeholder="jane@example.com" required autocomplete="email">
+                                <label for="contact-type"
+                                    >Event Type
+                                    <span class="req" aria-hidden="true"
+                                        >*</span
+                                    ></label
+                                >
+                                <select
+                                    id="contact-type"
+                                    name="event_type"
+                                    required
+                                >
+                                    <option value="" disabled selected>
+                                        Select event type…
+                                    </option>
+                                    <option value="wedding">Wedding</option>
+                                    <option value="corporate">
+                                        Corporate Event
+                                    </option>
+                                    <option value="gala">
+                                        Gala / Fundraiser
+                                    </option>
+                                    <option value="festival">
+                                        Festival / Concert
+                                    </option>
+                                    <option value="private">
+                                        Private Party
+                                    </option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
-                        </div>
-                        <div class="form-row">
                             <div class="form-group">
-                                <label for="contact-phone">Phone Number</label>
-                                <input type="tel" id="contact-phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel">
+                                <label for="contact-message"
+                                    >Message
+                                    <span class="req" aria-hidden="true"
+                                        >*</span
+                                    ></label
+                                >
+                                <textarea
+                                    id="contact-message"
+                                    name="message"
+                                    rows="5"
+                                    placeholder="Tell us about your event, expected guest count, location, and any special requests…"
+                                    required
+                                ></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="contact-date">Event Date <span class="req" aria-hidden="true">*</span></label>
-                                <input type="date" id="contact-date" name="event_date" required>
+                            <button
+                                type="submit"
+                                class="form-submit"
+                                id="form-submit-btn"
+                            >
+                                <span class="btn-text">Send Inquiry</span>
+                                <span class="btn-icon" aria-hidden="true"
+                                    >✻</span
+                                >
+                            </button>
+                            <p class="form-note">
+                                * Required fields. We respond within 48 hours.
+                            </p>
+                            <div
+                                class="form-success"
+                                id="form-success"
+                                aria-live="polite"
+                                role="status"
+                                hidden
+                            >
+                                <span class="success-icon">✻</span>
+                                <p>
+                                    Thank you! Your inquiry has been received.
+                                    We'll be in touch shortly.
+                                </p>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-type">Event Type <span class="req" aria-hidden="true">*</span></label>
-                            <select id="contact-type" name="event_type" required>
-                                <option value="" disabled selected>Select event type…</option>
-                                <option value="wedding">Wedding</option>
-                                <option value="corporate">Corporate Event</option>
-                                <option value="gala">Gala / Fundraiser</option>
-                                <option value="festival">Festival / Concert</option>
-                                <option value="private">Private Party</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-message">Message <span class="req" aria-hidden="true">*</span></label>
-                            <textarea id="contact-message" name="message" rows="5" placeholder="Tell us about your event, expected guest count, location, and any special requests…" required></textarea>
-                        </div>
-                        <button type="submit" class="form-submit" id="form-submit-btn">
-                            <span class="btn-text">Send Inquiry</span>
-                            <span class="btn-icon" aria-hidden="true">✻</span>
-                        </button>
-                        <p class="form-note">* Required fields. We respond within 48 hours.</p>
-                        <div class="form-success" id="form-success" aria-live="polite" role="status" hidden>
-                            <span class="success-icon">✻</span>
-                            <p>Thank you! Your inquiry has been received. We'll be in touch shortly.</p>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </main>
+            </section>
+        </main>
 
-    <!-- ═══════════════════════════════════════════
+        <!-- ═══════════════════════════════════════════
          FOOTER
     ═══════════════════════════════════════════ -->
-    <footer class="footer fade-in">
-        <h2 class="thank-you"><span id="cms-footer-thankyou">THANK YOU</span><br><span class="star-icon inline">✻</span> <span class="gold-text" id="cms-footer-subtext">FOR YOUR ATTENTION</span></h2>
-        <nav class="footer-nav" id="footer-nav" aria-label="Footer Navigation">
-            <!-- Footer links injected here -->
-        </nav>
-        <p class="footer-credits" id="cms-footer-credits">Krystal Harrow &amp; The Jazz Collective</p>
-        <p class="booking-info">Bookings: <a id="cms-footer-booking-url" href="https://linqapp.com/ynqjcd89o1pi" target="_blank" rel="noopener noreferrer" class="gold-text"><span id="cms-footer-booking-text">linqapp.com/ynqjcd89o1pi</span></a></p>
-        <div class="footer-socials" id="cms-footer-socials">
-            <!-- Social links injected here -->
-        </div>
-        <div class="footer-bg">
-            <img src="images/Photos-3-001/IMG_20260503_112549.jpg" alt="">
-        </div>
-    </footer>
+        <footer class="footer fade-in">
+            <h2 class="thank-you">
+                <span id="cms-footer-thankyou">THANK YOU</span><br /><span
+                    class="star-icon inline"
+                    >✻</span
+                >
+                <span class="gold-text" id="cms-footer-subtext"
+                    >FOR YOUR ATTENTION</span
+                >
+            </h2>
+            <nav
+                class="footer-nav"
+                id="footer-nav"
+                aria-label="Footer Navigation"
+            >
+                <!-- Footer links injected here -->
+            </nav>
+            <p class="footer-credits" id="cms-footer-credits">
+                Krystal Harrow &amp; The Jazz Collective
+            </p>
+            <p class="booking-info">
+                Bookings:
+                <a
+                    id="cms-footer-booking-url"
+                    href="https://linqapp.com/ynqjcd89o1pi"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="gold-text"
+                    ><span id="cms-footer-booking-text"
+                        >linqapp.com/ynqjcd89o1pi</span
+                    ></a
+                >
+            </p>
+            <div class="footer-socials" id="cms-footer-socials">
+                <!-- Social links injected here -->
+            </div>
+            <div class="footer-bg">
+                <img src="images/Photos-3-001/IMG_20260503_112549.jpg" alt="" />
+            </div>
+        </footer>
 
-    <!-- ═══════════════════════════════════════════
+        <!-- ═══════════════════════════════════════════
          OVERLAYS & MODALS (Sprint 5)
     ═══════════════════════════════════════════ -->
 
-    <!-- Press Kit / Protected EPK -->
-    <div id="press-kit-overlay" class="sub-page-overlay hidden">
-        <div class="overlay-content">
-            <button class="close-overlay" id="close-epk">×</button>
-            <div id="epk-lock" class="epk-lock-screen">
-                <span class="lock-icon">🔒</span>
-                <h2>Protected Press Kit</h2>
-                <p>Please enter the password to view assets and bio.</p>
-                <div class="lock-form">
-                    <input type="password" id="epk-pass" placeholder="Password...">
-                    <button id="epk-unlock-btn">Unlock</button>
-                </div>
-            </div>
-            <div id="epk-content" class="epk-main-content hidden">
-                <div class="section-header">
-                    <span class="section-label">ELECTRONIC PRESS KIT</span>
-                    <h2>Press Kit</h2>
-                    <div class="gold-line"></div>
-                </div>
-                <div class="epk-grid">
-                    <div class="epk-bio">
-                        <h3>Biography</h3>
-                        <p id="cms-epk-bio"></p>
+        <!-- Press Kit / Protected EPK -->
+        <div id="press-kit-overlay" class="sub-page-overlay hidden">
+            <div class="overlay-content">
+                <button class="close-overlay" id="close-epk">×</button>
+                <div id="epk-lock" class="epk-lock-screen">
+                    <span class="lock-icon">🔒</span>
+                    <h2>Protected Press Kit</h2>
+                    <p>Please enter the password to view assets and bio.</p>
+                    <div class="lock-form">
+                        <input
+                            type="password"
+                            id="epk-pass"
+                            placeholder="Password..."
+                        />
+                        <button id="epk-unlock-btn">Unlock</button>
                     </div>
-                    <div class="epk-assets">
-                        <h3>Assets & Downloads</h3>
-                        <ul id="cms-epk-assets" class="asset-list"></ul>
+                </div>
+                <div id="epk-content" class="epk-main-content hidden">
+                    <div class="section-header">
+                        <span class="section-label">ELECTRONIC PRESS KIT</span>
+                        <h2>Press Kit</h2>
+                        <div class="gold-line"></div>
+                    </div>
+                    <div class="epk-grid">
+                        <div class="epk-bio">
+                            <h3>Biography</h3>
+                            <p id="cms-epk-bio"></p>
+                        </div>
+                        <div class="epk-assets">
+                            <h3>Assets & Downloads</h3>
+                            <ul id="cms-epk-assets" class="asset-list"></ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Blog Full Post Modal -->
-    <div id="blog-modal" class="sub-page-overlay hidden">
-        <div class="overlay-content blog-modal-content">
-            <button class="close-overlay" id="close-blog">×</button>
-            <div class="blog-full-post">
-                <div class="blog-post-header">
-                    <span class="blog-post-date" id="cms-full-blog-date"></span>
-                    <h2 id="cms-full-blog-title"></h2>
-                    <div class="gold-line"></div>
-                </div>
-                <div class="blog-post-hero">
-                    <img id="cms-full-blog-img" src="" alt="">
-                </div>
-                <div class="blog-post-content" id="cms-full-blog-content">
-                    <!-- Full content injected here -->
+        <!-- Blog Full Post Modal -->
+        <div id="blog-modal" class="sub-page-overlay hidden">
+            <div class="overlay-content blog-modal-content">
+                <button class="close-overlay" id="close-blog">×</button>
+                <div class="blog-full-post">
+                    <div class="blog-post-header">
+                        <span
+                            class="blog-post-date"
+                            id="cms-full-blog-date"
+                        ></span>
+                        <h2 id="cms-full-blog-title"></h2>
+                        <div class="gold-line"></div>
+                    </div>
+                    <div class="blog-post-hero">
+                        <img id="cms-full-blog-img" src="" alt="" />
+                    </div>
+                    <div class="blog-post-content" id="cms-full-blog-content">
+                        <!-- Full content injected here -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="content.js"></script>
-    <script src="script.js"></script>
-</body>
+        <script src="content.js"></script>
+        <script src="script.js"></script>
+    </body>
 </html>
