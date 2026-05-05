@@ -19,6 +19,19 @@
     var el = document.getElementById(id);
     if (el && val) el.href = val;
   }
+  /* Apply src + optional display settings from an image object */
+  function applyImg(id, imgObj) {
+    if (!imgObj) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (imgObj.src) el.src = imgObj.src;
+    if (imgObj.objectFit)       el.style.objectFit      = imgObj.objectFit;
+    if (imgObj.objectPosition)  el.style.objectPosition = imgObj.objectPosition;
+    if (imgObj.displayWidth) {
+      var wrap = el.closest('.section-images') || el.parentElement;
+      if (wrap) wrap.style.maxWidth = imgObj.displayWidth + '%';
+    }
+  }
 
   // Meta
   if (C.meta) {
@@ -31,8 +44,8 @@
   if (C.hero) {
     setText('cms-hero-title', C.hero.title);
     setText('cms-hero-subtitle', C.hero.subtitle);
-    if (C.hero.image1) setSrc('cms-hero-img1', C.hero.image1.src);
-    if (C.hero.image2) setSrc('cms-hero-img2', C.hero.image2.src);
+    if (C.hero.image1) applyImg('cms-hero-img1', C.hero.image1);
+    if (C.hero.image2) applyImg('cms-hero-img2', C.hero.image2);
   }
 
   // About
@@ -41,42 +54,42 @@
     if (a.intro) {
       setHTML('cms-about-intro-heading', a.intro.heading);
       setText('cms-about-intro-body', a.intro.body);
-      if (a.intro.image) setSrc('cms-about-intro-img', a.intro.image.src);
+      if (a.intro.image) applyImg('cms-about-intro-img', a.intro.image);
     }
     if (a.characteristics) {
       setHTML('cms-about-char-heading', a.characteristics.heading);
       setText('cms-about-char-body1', a.characteristics.body1);
       setText('cms-about-char-body2', a.characteristics.body2);
-      if (a.characteristics.smallImage) setSrc('cms-about-char-small', a.characteristics.smallImage.src);
-      if (a.characteristics.mainImage)  setSrc('cms-about-char-main', a.characteristics.mainImage.src);
+      if (a.characteristics.smallImage) applyImg('cms-about-char-small', a.characteristics.smallImage);
+      if (a.characteristics.mainImage)  applyImg('cms-about-char-main',  a.characteristics.mainImage);
     }
     if (a.banner) {
-      if (a.banner.image) setSrc('cms-banner-img', a.banner.image.src);
+      if (a.banner.image) applyImg('cms-banner-img', a.banner.image);
       setHTML('cms-banner-text', a.banner.text);
     }
     if (a.modern) {
       setHTML('cms-about-modern-heading', a.modern.heading);
       setText('cms-about-modern-body1', a.modern.body1);
       setText('cms-about-modern-body2', a.modern.body2);
-      if (a.modern.image) setSrc('cms-about-modern-img', a.modern.image.src);
+      if (a.modern.image) applyImg('cms-about-modern-img', a.modern.image);
     }
     if (a.world) {
       setHTML('cms-about-world-heading', a.world.heading);
       setText('cms-about-world-body', a.world.body);
-      if (a.world.image) setSrc('cms-about-world-img', a.world.image.src);
+      if (a.world.image) applyImg('cms-about-world-img', a.world.image);
     }
     if (a.map) {
       setHTML('cms-about-map-heading', a.map.heading);
       setText('cms-about-map-body1', a.map.body1);
       setText('cms-about-map-body2', a.map.body2);
-      if (a.map.image) setSrc('cms-about-map-img', a.map.image.src);
+      if (a.map.image) applyImg('cms-about-map-img', a.map.image);
     }
     if (a.education) {
       setHTML('cms-about-edu-heading', a.education.heading);
       setText('cms-about-edu-body1', a.education.body1);
       setText('cms-about-edu-body2', a.education.body2);
-      if (a.education.image1) setSrc('cms-about-edu-img1', a.education.image1.src);
-      if (a.education.image2) setSrc('cms-about-edu-img2', a.education.image2.src);
+      if (a.education.image1) applyImg('cms-about-edu-img1', a.education.image1);
+      if (a.education.image2) applyImg('cms-about-edu-img2', a.education.image2);
     }
   }
 
@@ -144,7 +157,7 @@
     setText('cms-contact-linq-intro', ct.linqIntro);
     setText('cms-contact-linq-text', ct.linqText);
     setHref('cms-contact-linq-url', ct.linqUrl);
-    if (ct.photo) setSrc('cms-contact-photo', ct.photo.src);
+    if (ct.photo) applyImg('cms-contact-photo', ct.photo);
   }
 
   // Footer
@@ -282,5 +295,113 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // ─── Lightbox ──────────────────────────────────────────────────
+    initLightbox();
+
 });
+
+/* ─── Lightbox Module ───────────────────────────────────────────── */
+function initLightbox() {
+    // Build overlay HTML
+    const ov = document.createElement('div');
+    ov.className = 'lb-overlay lb-hidden';
+    ov.id = 'lb-overlay';
+    ov.innerHTML =
+        '<button class="lb-close" id="lb-close" aria-label="Close">&times;</button>' +
+        '<button class="lb-arrow lb-prev" id="lb-prev" aria-label="Previous">&#8592;</button>' +
+        '<div class="lb-inner">' +
+            '<img id="lb-img" src="" alt="">' +
+            '<div id="lb-caption"></div>' +
+            '<div id="lb-counter"></div>' +
+        '</div>' +
+        '<button class="lb-arrow lb-next" id="lb-next" aria-label="Next">&#8594;</button>';
+    document.body.appendChild(ov);
+
+    const lbImg     = document.getElementById('lb-img');
+    const lbCaption = document.getElementById('lb-caption');
+    const lbCounter = document.getElementById('lb-counter');
+    const lbPrev    = document.getElementById('lb-prev');
+    const lbNext    = document.getElementById('lb-next');
+
+    let group = [], idx = 0;
+
+    // Gallery = navigable group; everything else = standalone
+    const galleryImgs = Array.from(document.querySelectorAll('.gallery-item img'));
+    const soloSelectors = [
+        '.section-images img', '.hero-images img',
+        '.blog-img-wrap img', '.contact-photo img', '.small-images img'
+    ];
+
+    function open(images, startIdx) {
+        group = images;
+        idx   = startIdx;
+        render();
+        ov.classList.remove('lb-hidden');
+        requestAnimationFrame(() => ov.classList.add('lb-active'));
+        document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+        ov.classList.remove('lb-active');
+        setTimeout(() => ov.classList.add('lb-hidden'), 300);
+        document.body.style.overflow = '';
+    }
+
+    function render() {
+        const img = group[idx];
+        lbImg.style.opacity = '0';
+        setTimeout(() => {
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lbImg.style.opacity = '1';
+        }, 80);
+        // caption: use overlay span text, alt, or dataset
+        const capEl = img.closest('.gallery-item')?.querySelector('.gallery-overlay span');
+        lbCaption.textContent = capEl ? capEl.textContent : (img.alt || '');
+        lbCounter.textContent = group.length > 1 ? (idx + 1) + ' / ' + group.length : '';
+        lbPrev.disabled = idx === 0;
+        lbNext.disabled = idx === group.length - 1;
+        lbPrev.style.display = group.length > 1 ? 'flex' : 'none';
+        lbNext.style.display = group.length > 1 ? 'flex' : 'none';
+    }
+
+    function navigate(dir) {
+        idx = Math.max(0, Math.min(group.length - 1, idx + dir));
+        render();
+    }
+
+    // Attach clicks — gallery (navigable)
+    galleryImgs.forEach((img, i) => {
+        img.addEventListener('click', () => open(galleryImgs, i));
+    });
+
+    // Attach clicks — standalone images
+    soloSelectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach(img => {
+            img.addEventListener('click', () => open([img], 0));
+        });
+    });
+
+    // Close / navigate handlers
+    document.getElementById('lb-close').addEventListener('click', close);
+    ov.addEventListener('click', e => { if (e.target === ov) close(); });
+    lbPrev.addEventListener('click', e => { e.stopPropagation(); navigate(-1); });
+    lbNext.addEventListener('click', e => { e.stopPropagation(); navigate(1); });
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+        if (ov.classList.contains('lb-hidden')) return;
+        if (e.key === 'Escape')      close();
+        if (e.key === 'ArrowLeft')   navigate(-1);
+        if (e.key === 'ArrowRight')  navigate(1);
+    });
+
+    // Touch swipe
+    let touchX = 0;
+    ov.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    ov.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+    });
+}
 

@@ -120,6 +120,8 @@
     wireFields();
     // Wire image pickers
     wireImagePickers();
+    // Wire image size / focal point controls
+    wireImageSizeControls();
     // Render dynamic sections
     renderGallery();
     renderEvents();
@@ -480,6 +482,99 @@
   /* ── XSS helper ───────────────────────────────────── */
   function escHtml(str) {
     return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ── Image Size & Focal Point Controls ───────────── */
+  var FOCAL_POSITIONS = [
+    ['0% 0%','50% 0%','100% 0%'],
+    ['0% 50%','50% 50%','100% 50%'],
+    ['0% 100%','50% 100%','100% 100%']
+  ];
+
+  function wireImageSizeControls() {
+    document.querySelectorAll('.img-picker[data-img-path]').forEach(function(picker) {
+      var imgPath = picker.dataset.imgPath;
+      // parent path: "hero.image1.src" → "hero.image1"
+      var parentPath = imgPath.replace(/\.src$/, '');
+
+      var currentPos  = getPath(content, parentPath + '.objectPosition') || '50% 50%';
+      var currentFit  = getPath(content, parentPath + '.objectFit')      || 'contain';
+      var currentW    = getPath(content, parentPath + '.displayWidth')    || '100';
+
+      // Build focal grid HTML
+      var gridHTML = '<div class="focal-grid" data-focal-path="' + parentPath + '">';
+      FOCAL_POSITIONS.forEach(function(row) {
+        row.forEach(function(pos) {
+          var active = pos === currentPos ? ' active' : '';
+          gridHTML += '<button type="button" class="focal-btn' + active + '" data-pos="' + pos + '" title="' + pos + '"></button>';
+        });
+      });
+      gridHTML += '</div>';
+
+      // Build panel HTML
+      var panel = document.createElement('details');
+      panel.className = 'img-size-panel';
+      panel.innerHTML =
+        '<summary>Image Settings</summary>' +
+        '<div class="img-size-controls">' +
+          '<div class="size-row">' +
+            '<span class="size-label">Width</span>' +
+            '<select class="size-select" data-size-path="' + parentPath + '.displayWidth">' +
+              ['25','33','50','66','75','100'].map(function(v){
+                return '<option value="'+v+'"'+(v===String(currentW)?' selected':'')+'>'+v+'%</option>';
+              }).join('') +
+            '</select>' +
+          '</div>' +
+          '<div class="size-row">' +
+            '<span class="size-label">Fit</span>' +
+            '<select class="size-select" data-size-path="' + parentPath + '.objectFit">' +
+              ['contain','cover'].map(function(v){
+                return '<option value="'+v+'"'+(v===currentFit?' selected':'')+'>'+v+'</option>';
+              }).join('') +
+            '</select>' +
+          '</div>' +
+          '<div class="size-row">' +
+            '<span class="size-label">Focal Point</span>' +
+            gridHTML +
+          '</div>' +
+        '</div>';
+
+      picker.appendChild(panel);
+
+      // Wire size selects
+      panel.querySelectorAll('.size-select').forEach(function(sel) {
+        sel.addEventListener('change', function() {
+          setPath(content, sel.dataset.sizePath, sel.value);
+          markUnsaved(); save();
+          // update the preview image fit/position
+          var previewImg = picker.querySelector('.img-preview img');
+          if (previewImg) {
+            if (sel.dataset.sizePath.endsWith('.objectFit')) previewImg.style.objectFit = sel.value;
+            if (sel.dataset.sizePath.endsWith('.objectPosition')) previewImg.style.objectPosition = sel.value;
+          }
+        });
+      });
+
+      // Wire focal grid
+      panel.querySelectorAll('.focal-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          panel.querySelectorAll('.focal-btn').forEach(function(b){ b.classList.remove('active'); });
+          btn.classList.add('active');
+          var pos = btn.dataset.pos;
+          setPath(content, parentPath + '.objectPosition', pos);
+          markUnsaved(); save();
+          var previewImg = picker.querySelector('.img-preview img');
+          if (previewImg) previewImg.style.objectPosition = pos;
+        });
+      });
+
+      // Apply current settings to preview
+      var previewImg = picker.querySelector('.img-preview img');
+      if (previewImg) {
+        previewImg.style.objectFit     = currentFit;
+        previewImg.style.objectPosition = currentPos;
+      }
+    });
   }
 
   /* ── Start ────────────────────────────────────────── */
