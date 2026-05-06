@@ -1,0 +1,17 @@
+{
+  "name": "Krystal Harrow & The Jazz Collective",
+  "short_name": "KH & TJC",
+  "description": "Premium jazz entertainment portfolio and booking site",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0d0d",
+  "theme_color": "#D4AF37",
+  "icons": [
+    {
+      "src": "/images/Photos-3-001/IMG_20260503_112550.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

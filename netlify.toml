@@ -39,3 +39,16 @@
   for = "/*.js"
   [headers.values]
     Cache-Control = "public, max-age=86400, must-revalidate"
+
+# ── Service Worker (never cache) ───────────────────────────────────────
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    Content-Type = "application/javascript"
+
+# ── Web App Manifest ───────────────────────────────────────────────────
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Content-Type = "application/json"

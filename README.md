@@ -176,7 +176,7 @@ User → Admin Panel (admin.html)
 
 ## ✅ Status & Next Steps
 
-### Recently Completed
+### ✅ Recently Completed
 - [x] Full site structure (Hero, About, Gallery, Events, Blog, Testimonials, Newsletter, Contact, Footer)
 - [x] Admin CMS panel with 15 management tabs
 - [x] Content data layer with localStorage persistence + JSON export
@@ -187,17 +187,19 @@ User → Admin Panel (admin.html)
 - [x] Lightbox zoom-in cursor on all images
 - [x] Fixed duplicate blog rendering bug
 - [x] Fixed JavaScript syntax error (dangling brace in content renderer)
+- [x] **JSON-LD Structured Data (SEO)** — Schema.org MusicGroup, Person, Organization, WebSite + all 5 Events
+- [x] **PWA / Offline support** — Service worker (`/sw.js`) + Web App Manifest (`/manifest.json`) with gold theme color
+- [x] **Blog RSS feed** — `/feed.xml` with all 3 posts, RSS 2.0 compliant
+- [x] **Social media feed section** — Instagram section with follow link on main page
+- [x] **Accessibility improvements** — Skip-to-content link, focusable admin link, ARIA labels
+- [x] **Performance optimizations** — Preconnect hints (LinqApp, Google Fonts), DNS prefetch, `fetchpriority="high"` on hero image, `font-display: swap`
+- [x] **Admin nav link** — Footer link to `/admin.html` from main site
+- [x] **RSS feed link** — Footer + `<head>` alternate link for feed auto-discovery
 
-### Upcoming / In Progress
+### 🚧 Upcoming / In Progress
 - [ ] **Image optimization** — Convert images to WebP/AVIF for faster load times
-- [ ] **SEO enhancements** — Add JSON-LD structured data (MusicGroup, Event, Person schemas)
-- [ ] **Performance audit** — Lighthouse score improvements (lazy loading, preconnect, font-display)
-- [ ] **PWA / Offline support** — Add service worker and Web App Manifest
-- [ ] **Social media feed** — Embed Instagram feed via oEmbed or API
-- [ ] **Blog RSS feed** — Generate `/feed.xml` for subscribers
-- [ ] **Accessibility audit** — Keyboard navigation, screen reader testing, color contrast verification
 - [ ] **Cross-browser testing** — Verify on Safari, Firefox, Edge, mobile browsers
-- [ ] **Form backend live** — Configure Formspree or replace with custom endpoint
+- [ ] **Form backend live** — Connect a real Formspree endpoint (configured via admin panel)
 - [ ] **Analytics** — Set up Google Analytics via admin panel (GA ID field ready)
 
 ---

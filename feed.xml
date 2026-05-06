@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+
+<channel>
+  <title>Krystal Harrow &amp; The Jazz Collective</title>
+  <link>https://jazz-collective.netlify.app</link>
+  <description>Krystal Harrow is an established vocalist and owner of Krystal Harrow Entertainment, offering premium musical experiences across Jazz, Gospel, R&amp;B, and more.</description>
+  <language>en-US</language>
+  <lastBuildDate>Sun, 28 Apr 2026 00:00:00 -0400</lastBuildDate>
+  <generator>Custom RSS Generator</generator>
+  <atom:link href="https://jazz-collective.netlify.app/feed.xml" rel="self" type="application/rss+xml"/>
+
+  <image>
+    <url>https://jazz-collective.netlify.app/images/Photos-3-001/IMG_20260503_112550.jpg</url>
+    <title>Krystal Harrow &amp; The Jazz Collective</title>
+    <link>https://jazz-collective.netlify.app</link>
+    <width>144</width>
+    <height>144</height>
+  </image>
+
+  <item>
+    <title>The Magic of Caribbean Jazz Fusion</title>
+    <link>https://jazz-collective.netlify.app/#the-magic-of-caribbean-jazz-fusion</link>
+    <guid isPermaLink="true">https://jazz-collective.netlify.app/#the-magic-of-caribbean-jazz-fusion</guid>
+    <pubDate>Tue, 28 Apr 2026 00:00:00 -0400</pubDate>
+    <dc:creator>Krystal Harrow</dc:creator>
+    <category>Music</category>
+    <description><![CDATA[How the steel pan rhythms of Trinidad shaped a distinctly Caribbean approach to jazz improvisation, and what it means to bring that sound to American stages.]]></description>
+    <content:encoded><![CDATA[<p>How the steel pan rhythms of Trinidad shaped a distinctly Caribbean approach to jazz improvisation, and what it means to bring that sound to American stages.</p>]]></content:encoded>
+  </item>
+
+  <item>
+    <title>Vocal Techniques Workshop Recap</title>
+    <link>https://jazz-collective.netlify.app/#vocal-techniques-workshop-recap</link>
+    <guid isPermaLink="true">https://jazz-collective.netlify.app/#vocal-techniques-workshop-recap</guid>
+    <pubDate>Sun, 15 Mar 2026 00:00:00 -0400</pubDate>
+    <dc:creator>Krystal Harrow</dc:creator>
+    <category>Education</category>
+    <description><![CDATA[Over 40 aspiring vocalists joined Krystal for an intensive two-day vocal techniques and empowerment workshop — here are the key takeaways.]]></description>
+    <content:encoded><![CDATA[<p>Over 40 aspiring vocalists joined Krystal for an intensive two-day vocal techniques and empowerment workshop — here are the key takeaways.</p>]]></content:encoded>
+  </item>
+
+  <item>
+    <title>Behind the Scenes at the Mayor's Building</title>
+    <link>https://jazz-collective.netlify.app/#behind-the-scenes-at-the-mayors-building</link>
+    <guid isPermaLink="true">https://jazz-collective.netlify.app/#behind-the-scenes-at-the-mayors-building</guid>
+    <pubDate>Tue, 03 Feb 2026 00:00:00 -0500</pubDate>
+    <dc:creator>Krystal Harrow</dc:creator>
+    <category>Behind the Scenes</category>
+    <description><![CDATA[An exclusive look at the preparation, the sound check, and the electric atmosphere surrounding one of our most celebrated performances at Winston-Salem's Mayor's Building.]]></description>
+    <content:encoded><![CDATA[<p>An exclusive look at the preparation, the sound check, and the electric atmosphere surrounding one of our most celebrated performances at Winston-Salem&#8217;s Mayor&#8217;s Building.</p>]]></content:encoded>
+  </item>
+
+</channel>
+</rss>
