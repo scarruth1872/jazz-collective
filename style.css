@@ -1507,7 +1507,30 @@ p {
 
 .footer-admin-link {
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity var(--transition);
+    position: relative;
+    z-index: 10;
+}
+.footer-admin-link a {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: var(--radius);
+    transition: all var(--transition);
+}
+.footer-admin-link a:hover {
+    opacity: 1;
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold);
+}
+.footer-feed-link {
+    text-align: center;
+    margin-top: 0.75rem;
     font-size: 0.75rem;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1516,8 +1539,17 @@ p {
     position: relative;
     z-index: 10;
 }
-.footer-admin-link:hover {
+.footer-feed-link a {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius);
+    transition: all var(--transition);
+}
+.footer-feed-link a:hover {
     opacity: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--gold-muted);
 }
 
 /* ─── Social Feed / Instagram Section ─────── */
@@ -1533,20 +1565,4 @@ p {
     max-width: 500px;
     margin: 0 auto;
     line-height: 1.8;
-}
-
-/* ─── Footer RSS Feed Link ───────────────── */
-.footer-feed-link {
-    text-align: center;
-    margin-top: 0.75rem;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0.4;
-    transition: opacity var(--transition);
-    position: relative;
-    z-index: 10;
-}
-.footer-feed-link:hover {
-    opacity: 1;
 }
