@@ -1,53 +1,58 @@
-const CACHE_NAME = 'kh-tjc-cache-v1';
-const IMAGE_CACHE_NAME = 'kh-tjc-images-v1';
+const CACHE_NAME = "kh-tjc-cache-v1";
+const IMAGE_CACHE_NAME = "kh-tjc-images-v1";
 
 const CORE_PAGES = [
-  '/',
-  '/style.css',
-  '/script.js',
-  '/content.js',
-  '/admin.html',
-  '/admin.css',
-  '/admin.js'
+  "/",
+  "/style.css",
+  "/script.js",
+  "/content.js",
+  "/admin.html",
+  "/admin.css",
+  "/admin.js",
 ];
 
 // ── Install: cache core pages ─────────────────────────────────────────
-self.addEventListener('install', function (event) {
+self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
       return cache.addAll(CORE_PAGES);
-    })
+    }),
   );
   self.skipWaiting();
 });
 
 // ── Activate: clean old caches ────────────────────────────────────────
-self.addEventListener('activate', function (event) {
+self.addEventListener("activate", function (event) {
   const validCaches = [CACHE_NAME, IMAGE_CACHE_NAME];
   event.waitUntil(
-    caches.keys().then(function (cacheNames) {
-      return Promise.all(
-        cacheNames
-          .filter(function (name) {
-            return !validCaches.includes(name);
-          })
-          .map(function (name) {
-            return caches.delete(name);
-          })
-      );
-    }).then(function () {
-      return self.clients.claim();
-    })
+    caches
+      .keys()
+      .then(function (cacheNames) {
+        return Promise.all(
+          cacheNames
+            .filter(function (name) {
+              return !validCaches.includes(name);
+            })
+            .map(function (name) {
+              return caches.delete(name);
+            }),
+        );
+      })
+      .then(function () {
+        return self.clients.claim();
+      }),
   );
 });
 
 // ── Fetch: network-first for everything, cache images separately ────
-self.addEventListener('fetch', function (event) {
+self.addEventListener("fetch", function (event) {
+  // Only handle http(s) requests — skip chrome-extension:, data:, blob:, etc.
+  if (!event.request.url.startsWith("http")) return;
   const url = new URL(event.request.url);
 
   // ── Images: cache-first with separate cache ─────────────────────────
   if (
-    event.request.destination === 'image' ||
+    event.request.destination === "image" ||
     /\.(png|jpg|jpeg|gif|svg|webp|bmp|ico)(\?.*)?$/i.test(url.pathname)
   ) {
     event.respondWith(
@@ -56,15 +61,17 @@ self.addEventListener('fetch', function (event) {
           if (cachedResponse) {
             return cachedResponse;
           }
-          return fetch(event.request).then(function (networkResponse) {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          }).catch(function () {
-            // If network fails, return a fallback transparent pixel or just the cached version
-            return cachedResponse;
-          });
+          return fetch(event.request)
+            .then(function (networkResponse) {
+              cache.put(event.request, networkResponse.clone());
+              return networkResponse;
+            })
+            .catch(function () {
+              // If network fails, return a fallback transparent pixel or just the cached version
+              return cachedResponse;
+            });
         });
-      })
+      }),
     );
     return;
   }
@@ -75,7 +82,7 @@ self.addEventListener('fetch', function (event) {
     event.respondWith(
       caches.match(event.request).then(function (cachedResponse) {
         return cachedResponse || fetch(event.request);
-      })
+      }),
     );
     return;
   }
@@ -91,6 +98,6 @@ self.addEventListener('fetch', function (event) {
       })
       .catch(function () {
         return caches.match(event.request);
-      })
+      }),
   );
 });

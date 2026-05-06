@@ -1505,51 +1505,18 @@ p {
     top: 0;
 }
 
-.footer-admin-link {
-    text-align: center;
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    opacity: 0.7;
-    transition: opacity var(--transition);
-    position: relative;
-    z-index: 10;
-}
-.footer-admin-link a {
-    display: inline-block;
-    padding: 0.5rem 1.2rem;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: var(--radius);
-    transition: all var(--transition);
-}
-.footer-admin-link a:hover {
-    opacity: 1;
-    background: rgba(212, 175, 55, 0.1);
-    border-color: var(--gold);
-}
-.footer-feed-link {
-    text-align: center;
-    margin-top: 0.75rem;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+.nav-admin-link {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    text-decoration: none;
     opacity: 0.5;
-    transition: opacity var(--transition);
-    position: relative;
-    z-index: 10;
-}
-.footer-feed-link a {
-    display: inline-block;
-    padding: 0.4rem 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius);
     transition: all var(--transition);
+    line-height: 1;
+    padding: 0.3rem;
 }
-.footer-feed-link a:hover {
+.nav-admin-link:hover {
     opacity: 1;
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--gold-muted);
+    color: var(--gold);
 }
 
 /* ─── Social Feed / Instagram Section ─────── */
