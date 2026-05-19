@@ -20,6 +20,7 @@
 | **Upcoming Events** | Chronological event schedule with date blocks, venue info, and ticket links |
 | **Blog / News** | Three-column card grid with tag filtering and full-post modal overlay |
 | **Testimonials** | Client reviews with star ratings |
+| **Instagram / Social** | Instagram section with follow link and embed-ready placeholder |
 | **Newsletter** | Email signup form (custom or embed code from Mailchimp/others) |
 | **Booking Form** | Full inquiry form with client-side validation (name, email, phone, date, event type, message), Formspree integration |
 | **Footer** | Navigation links, social media, booking URL, and credits |
@@ -50,13 +51,16 @@ The entire site is editable through a password-protected admin panel with 15 man
 
 **Design highlights:**
 - Sticky navigation bar with scroll-aware active link highlighting
+- Admin & RSS feed links (⚙ 📡 icons) in the nav bar for quick access
 - Dark/gold premium aesthetic with Playfair Display + Inter typography
 - Smooth scroll-triggered `fade-in` animations via Intersection Observer
 - Lightbox for images with keyboard navigation (arrow keys, Escape) and touch swipe support
 - Hamburger menu for mobile responsiveness
 - Semantic HTML5 with ARIA labels and accessible form controls
+- Skip-to-content link for keyboard navigation
 - Security headers + aggressive image caching via `netlify.toml`
 - Blog modal overlay with full post content support
+- RSS 2.0 feed with auto-discovery for blog subscribers
 
 ---
 
@@ -72,8 +76,12 @@ jazz-collective/
 ├── admin.html              # Admin CMS panel (15 management tabs)
 ├── admin.css               # Admin panel styles
 ├── admin.js                # Admin panel logic (CRUD for all content types)
-├── netlify.toml            # Netlify build & HTTP header config
+├── sw.js                   # Service worker (offline caching, PWA support)
+├── manifest.json           # Web App Manifest (PWA install, theme color, icons)
+├── feed.xml                # RSS 2.0 feed (blog auto-discovery for subscribers)
+├── netlify.toml            # Netlify build config, security headers, cache rules
 ├── .gitignore              # Excludes archives, screenshots, OS noise
+├── README.md               # You are here
 └── images/
     ├── Photos-3-001/       # Primary photo library (22 performance/headshot images)
     ├── world_map_gold_*.png
@@ -193,14 +201,32 @@ User → Admin Panel (admin.html)
 - [x] **Social media feed section** — Instagram section with follow link on main page
 - [x] **Accessibility improvements** — Skip-to-content link, focusable admin link, ARIA labels
 - [x] **Performance optimizations** — Preconnect hints (LinqApp, Google Fonts), DNS prefetch, `fetchpriority="high"` on hero image, `font-display: swap`
-- [x] **Admin nav link** — Footer link to `/admin.html` from main site
-- [x] **RSS feed link** — Footer + `<head>` alternate link for feed auto-discovery
+- [x] **Admin & RSS links** — ⚙ and 📡 icons in sticky nav bar
+- [x] **CLS Prevention** — Aspect-ratio on all image containers + explicit width/height on gallery/blog images
+- [x] **Service worker fix** — Filters out non-http(s) requests (chrome-extension:, etc.)
 
-### 🚧 Upcoming / In Progress
-- [ ] **Image optimization** — Convert images to WebP/AVIF for faster load times
+### 🚧 Remaining (Manual / Credentials Required)
+- [ ] **WebP/AVIF conversion** — Run images through Sharp, Squoosh, or ImageMagick
 - [ ] **Cross-browser testing** — Verify on Safari, Firefox, Edge, mobile browsers
-- [ ] **Form backend live** — Connect a real Formspree endpoint (configured via admin panel)
-- [ ] **Analytics** — Set up Google Analytics via admin panel (GA ID field ready)
+- [ ] **Form backend** — Enter a real Formspree endpoint in Admin > General > Contact Form Email
+- [ ] **Analytics** — Enter a Google Analytics Measurement ID in Admin > General
+
+---
+
+## 🚀 Deployment Checklist
+
+Before going live on Netlify:
+
+1. [ ] **Update social media URLs** — Admin > General tab (Instagram, Facebook, YouTube)
+2. [ ] **Set contact email** — Admin > General > Contact Form Email (Formspree endpoint)
+3. [ ] **Add Google Analytics** — Admin > General > Google Analytics Measurement ID
+4. [ ] **Review content** — All text, events, photos in the admin panel
+5. [ ] **Set admin password** — Admin > Data > Change Admin Password (default: `jazzcollective2026`)
+6. [ ] **Export & commit** — Admin > Data > Export JSON, replace `content-data.json`, commit to GitHub
+7. [ ] **Update live URL** — Replace `jazz-collective.netlify.app` in `index.html`, `feed.xml`, `manifest.json` with your actual Netlify domain
+8. [ ] **Test forms** — Submit a test booking to confirm Formspree delivers to your email
+9. [ ] **Test admin** — Navigate to `/admin.html` on the live site, confirm login works
+10. [ ] **Verify SSL** — Netlify provisions auto-SSL; confirm the padlock shows in browser
 
 ---
 

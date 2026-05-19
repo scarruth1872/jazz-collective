@@ -278,7 +278,7 @@
             item.src +
             '" alt="' +
             item.alt +
-            '" loading="lazy">' +
+            '" loading="lazy" width="400" height="400">' +
             '<div class="gallery-overlay"><span>' +
             item.caption +
             "</span></div>" +
@@ -304,7 +304,7 @@
             post.image.src +
             '" alt="' +
             post.image.alt +
-            '" loading="lazy">' +
+            '" loading="lazy" width="400" height="250">' +
             '<span class="blog-tag">' +
             post.tag +
             "</span>" +

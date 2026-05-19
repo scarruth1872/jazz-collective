@@ -45,6 +45,7 @@ img {
 .small-images img {
     object-fit: contain;
     background: var(--bg-color);
+    aspect-ratio: 4 / 3;
 }
 
 a {
@@ -340,7 +341,8 @@ p {
 }
 .banner-container img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 21 / 9;
     object-position: center;
 }
 
@@ -423,6 +425,7 @@ p {
 }
 
 .gallery-item {
+    aspect-ratio: 1;
     overflow: hidden;
     border-radius: var(--radius);
     position: relative;
@@ -467,10 +470,12 @@ p {
 }
 
 .gallery-item.g-tall {
+    aspect-ratio: 1 / 2;
     grid-row: span 2;
 }
 .gallery-item.g-wide {
     grid-column: span 2;
+    aspect-ratio: 2 / 1;
 }
 
 /* ─── Events ─────────────────────────────── */
@@ -590,6 +595,7 @@ p {
     position: relative;
     height: 240px;
     overflow: hidden;
+    aspect-ratio: 16 / 10;
 }
 .blog-img-wrap img {
     width: 100%;
@@ -1525,6 +1531,13 @@ p {
     margin: 0 auto;
     text-align: center;
     padding: 2rem 1rem;
+}
+.social-placeholder {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--bg-2);
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 .social-placeholder p {
     font-size: 1.1rem;
